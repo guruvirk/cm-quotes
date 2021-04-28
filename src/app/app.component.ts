@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ export class AppComponent {
   title = 'cm-quotes';
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  minDate = new Date()
 
   constructor(private _formBuilder: FormBuilder) { }
 
@@ -20,5 +22,8 @@ export class AppComponent {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
+    if (new Date().getHours() > 13) {
+      this.minDate = moment().add(1, 'days').toDate()
+    }
   }
 }

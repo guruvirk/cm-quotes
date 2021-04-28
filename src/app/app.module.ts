@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MatButtonModule, MatFormFieldModule, MatInputModule, MatStepperModule } from '@angular/material';
-import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule, MatSelectModule, MatStepperModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -14,12 +14,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     MatStepperModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatSelectModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

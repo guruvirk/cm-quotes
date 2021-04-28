@@ -1,7 +1,27 @@
 .mat-stepper-horizontal {
     margin-top: 8px;
-  }
+}
   
-  .mat-form-field {
+.mat-form-field {
     margin-top: 16px;
+}
+
+.heading {
+    font-weight: bold;
+}
+
+.mainContainer {
+  margin-top: 90px;text-align: center;
+}
+
+.formContainer {
+  width: 70%;
+  margin-left: 15%;
+}
+
+@media (max-width: 991px) {
+  .formContainer {
+    width: 100%;
+    margin-left: 0;
   }
+}

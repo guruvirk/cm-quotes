@@ -227,11 +227,11 @@ div#preloader {
   transition: all 0.5s;
   z-index: 997;
   transition: all 0.5s;
-  background: rgba(0, 0, 0, 0.8);
+  background: black;
 }
 
 #header.header-scrolled {
-  background: rgba(0, 0, 0, 0.9);
+  background: black;
   height: 64px;
 }
 
@@ -2071,15 +2071,15 @@ span.email-notes {
 --------------------------------------------------------------*/
 .footer-area {
   padding: 40px 0;
-  background: #f9f9f9;
+  background: black;
 }
 
 .footer-head p {
-  color: #444;
+  color: white;
 }
 
 .footer-head h4 {
-  color: #444;
+  color: white;
   font-size: 16px;
   letter-spacing: 2px;
   padding-bottom: 10px;
@@ -2095,7 +2095,7 @@ span.email-notes {
 }
 
 .footer-logo h2 {
-  color: #222;
+  color: white;
   padding: 0;
   margin: 0;
   font-size: 36px;
@@ -2112,8 +2112,8 @@ span.email-notes {
 }
 
 .footer-icons ul li a {
-  border: 1px solid #444;
-  color: #444;
+  border: 1px solid white;
+  color: white;
   display: block;
   font-size: 16px;
   height: 40px;
@@ -2178,7 +2178,7 @@ span.email-notes {
 }
 
 .footer-area-bottom {
-  background: #f1f1f1 none repeat scroll 0 0;
+  background: black none repeat scroll 0 0;
   padding: 15px 0;
 }
 
@@ -2188,12 +2188,12 @@ span.email-notes {
 }
 
 .copyright-text a {
-  color: #444;
+  color: white;
 }
 
 .copyright > p {
   margin-bottom: 0;
-  color: #444;
+  color: white;
 }
 
 .copyright a, .credits a {

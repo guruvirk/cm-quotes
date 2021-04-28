@@ -19,30 +19,145 @@
   </div>
 </header>
 
-<div style="margin-top: 90px;">
-  <mat-horizontal-stepper linear #stepper>
-    <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+<div class="mainContainer">
+
+  <h2 class="heading">Moving & Delivery Online Quote Wizard
+  </h2>
+
+  <mat-vertical-stepper [linear]="false" #stepper>
+    <mat-step [stepControl]="firstFormGroup" [editable]="true">
       <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Fill out your name</ng-template>
-        <mat-form-field>
-          <mat-label>Name</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperNext>Next</button>
+        <h6>
+          Please let us know the pick-up and delivery address, what time you would like us to come and whether you would
+          like
+          to book our one man or two man service.
+        </h6>
+        <ng-template matStepLabel>When and where</ng-template>
+        <div class="formContainer">
+          <div class="row">
+            <mat-form-field class="col-md-9 col-sm-12">
+              <mat-label>Where from</mat-label>
+              <input matInput placeholder="Ex. 1 Main St, Auckland, NZ" required>
+            </mat-form-field>
+            <mat-form-field class="col-md-3 col-sm-12" appearance="fill">
+              <mat-label>Choose Floor</mat-label>
+              <mat-select required>
+                <mat-option value="ground">Ground Floor</mat-option>
+                <mat-option value="1st">1st Floor</mat-option>
+                <mat-option value="2nd">2nd Floor</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-checkbox color="primary" class="col-md-6 col-sm-12" [(ngModel)]="ParkingAwayFrom"
+              [ngModelOptions]="{standalone: true}">Parking
+              is
+              more
+              than 10m away?
+            </mat-checkbox>
+            <mat-checkbox color="primary" class="col-md-6 col-sm-12" [(ngModel)]="elevatorAvlFrom"
+              [ngModelOptions]="{standalone: true}">
+              An elevator is avaliable?</mat-checkbox>
+            <mat-form-field class="col-md-9 col-sm-12">
+              <mat-label>Where to</mat-label>
+              <input matInput placeholder="Ex. 1 Main St, Auckland, NZ" required>
+            </mat-form-field>
+            <mat-form-field class="col-md-3 col-sm-12" appearance="fill">
+              <mat-label>Choose Floor</mat-label>
+              <mat-select required>
+                <mat-option value="ground">Ground Floor</mat-option>
+                <mat-option value="1st">1st Floor</mat-option>
+                <mat-option value="2nd">2nd Floor</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-checkbox color="primary" class="col-md-6 col-sm-12" [(ngModel)]="ParkingAwayTo"
+              [ngModelOptions]="{standalone: true}">Parking is
+              more
+              than 10m away?
+            </mat-checkbox>
+            <mat-checkbox color="primary" class="col-md-6 col-sm-12" [(ngModel)]="elevatorAvlTo"
+              [ngModelOptions]="{standalone: true}">
+              An elevator is avaliable?</mat-checkbox>
+          </div>
+          <br>
+          <mat-checkbox color="primary" style="width: 100%;" [(ngModel)]="isConfirm"
+            [ngModelOptions]="{standalone: true}">
+            Confirm the above information is correct.</mat-checkbox>
+          <br>
+          <div class="row">
+            <mat-form-field class="col-md-9 col-sm-12" appearance="fill">
+              <mat-label>Pick Up Date</mat-label>
+              <input readonly matInput [matDatepicker]="picker" [min]="minDate" required>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="col-md-3 col-sm-12" appearance="fill">
+              <mat-label>Time</mat-label>
+              <mat-select required>
+                <mat-option value="8-9">8AM to 9AM</mat-option>
+                <mat-option value="12-2">12PM to 2PM</mat-option>
+                <mat-option value="2-4">2PM to 4PM</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <br>
+          <div>
+            <button color="primary" mat-raised-button matStepperNext>Next</button>
+          </div>
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+    <mat-step [stepControl]="secondFormGroup" [editable]="true">
       <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Fill out your address</ng-template>
-        <mat-form-field>
-          <mat-label>Address</mat-label>
-          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
-        </mat-form-field>
+        <h6>
+          Please let us know the pick-up and delivery address, what time you would like us to come and whether you would
+          like
+          to book our one man or two man service.
+        </h6>
+        <ng-template matStepLabel>House Move Details</ng-template>
+
+        <h4 style="text-align: left; width: 100%;">
+          Size of move
+        </h4>
+
+        <div class="row" style="text-align: left;">
+          <section class="col-md-6">
+            <span>
+              <mat-checkbox>
+                Family Sized Homes (3+ bedrooms)
+              </mat-checkbox>
+            </span>
+            <span>
+              <ul style="margin-left: 20px;">
+                <li>
+                  <mat-checkbox>
+                    3 bedrooms
+                  </mat-checkbox>
+                </li>
+                <li>
+                  <mat-checkbox>
+                    4 bedrooms
+                  </mat-checkbox>
+                </li>
+                <li>
+                  <mat-checkbox>
+                    5 bedrooms
+                  </mat-checkbox>
+                </li>
+              </ul>
+            </span>
+          </section>
+          <section class="col-md-6">
+            <mat-checkbox>
+              Apartment / Small House Move (1-2 bedrooms)
+            </mat-checkbox>
+            <br>
+            <mat-checkbox>
+              Office Move / Business Relocation
+            </mat-checkbox>
+          </section>
+        </div>
         <div>
-          <button class="ready-btn" mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button style="margin-right: 10px;" color="primary" mat-raised-button matStepperPrevious>Back</button>
+          <button style="margin-left: 10px;" color="primary" mat-raised-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
@@ -50,11 +165,11 @@
       <ng-template matStepLabel>Done</ng-template>
       <p>You are now done.</p>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button color="primary" mat-raised-button matStepperPrevious>Back</button>
+        <button color="primary" mat-raised-button (click)="stepper.reset()">Reset</button>
       </div>
     </mat-step>
-  </mat-horizontal-stepper>
+  </mat-vertical-stepper>
 
 </div>
 <footer>
