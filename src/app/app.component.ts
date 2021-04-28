@@ -9,6 +9,13 @@ import * as moment from 'moment';
 })
 export class AppComponent {
   title = 'cm-quotes';
+  ParkingAwayFrom: boolean
+  elevatorAvlFrom: boolean
+  ParkingAwayTo: boolean
+  elevatorAvlTo: boolean
+  isConfirm: boolean
+  checked: boolean
+  indeterminate: boolean
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   minDate = new Date()
