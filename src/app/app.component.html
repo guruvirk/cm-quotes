@@ -27,7 +27,7 @@
   <mat-vertical-stepper [linear]="false" #stepper>
     <mat-step [stepControl]="firstFormGroup" [editable]="true">
       <form [formGroup]="firstFormGroup">
-        <h6>
+        <h6 style="margin-top: 10px;">
           Please let us know the pick-up and delivery address, what time you would like us to come and whether you would
           like
           to book our one man or two man service.
@@ -107,10 +107,10 @@
     </mat-step>
     <mat-step [stepControl]="secondFormGroup" [editable]="true">
       <form [formGroup]="secondFormGroup">
-        <h6>
-          Please let us know the pick-up and delivery address, what time you would like us to come and whether you would
-          like
-          to book our one man or two man service.
+        <h6 style="margin-top: 10px;">
+        Please let us know the pick-up and delivery address, what time you would like us to come and whether you would
+        like
+        to book our one man or two man service.
         </h6>
         <ng-template matStepLabel>House Move Details</ng-template>
 
@@ -155,18 +155,233 @@
             </mat-checkbox>
           </section>
         </div>
+
+        <br>
+
+        <h4 style="text-align: left; width: 100%;">
+          What services do you require
+        </h4>
+
+        <div class="row" style="text-align: left;">
+          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="checked" [ngModelOptions]="{standalone: true}">Full Pack
+            and Move Services</mat-checkbox>
+          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
+            Move Only (no packing req.)
+          </mat-checkbox>
+          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
+            Cleaning</mat-checkbox>
+        </div>
+
+        <br>
+
+        <h4 style="text-align: left; width: 100%;">
+          Special or additional items
+        </h4>
+
+        <div class="row" style="text-align: left;">
+          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="checked" [ngModelOptions]="{standalone: true}">Upright
+            Piano</mat-checkbox>
+          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]=" {standalone: true}">
+            Outdoor Plants
+          </mat-checkbox>
+          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
+            Treadmill</mat-checkbox>
+          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="checked" [ngModelOptions]="{standalone: true}">Baby
+            Grand</mat-checkbox>
+          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
+            Heavy Planters
+          </mat-checkbox>
+          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">Gym
+            Sets</mat-checkbox>
+          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="checked" [ngModelOptions]="{standalone: true}">Grand
+            Piano</mat-checkbox>
+          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
+            Pool Table Standard
+          </mat-checkbox>
+          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">Spa
+            pool Small</mat-checkbox>
+          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
+            Large BBQ</mat-checkbox>
+          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
+            Pool Table Slate</mat-checkbox>
+          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">Spa
+            pool Large</mat-checkbox>
+          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
+            Outdoor Furniture</mat-checkbox>
+          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
+            Side by Side Fridge</mat-checkbox>
+          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
+            Large Fish Tank</mat-checkbox>
+          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
+            Trampoline</mat-checkbox>
+          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
+            Garden Shed</mat-checkbox>
+          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
+            Heavy Garage Items</mat-checkbox>
+        </div>
+
+        <br>
+
+        <h4 style="text-align: left; width: 100%;">
+          Location and access
+        </h4>
+
+        <h5>Pick up address</h5>
+
+        <div class="row">
+          <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
+            <mat-label>Vehicle access</mat-label>
+            <mat-select required>
+              <mat-option value="vA1">Good and/or flat access and truck can fit in the driveway</mat-option>
+              <mat-option value="vA2">Access good but on-street parking is only available.</mat-option>
+              <mat-option value="vA3">Long driveway, but wide enough for a truck</mat-option>
+              <mat-option value="vA4">Overhanging spouting, trees or low hanging wires over driveway</mat-option>
+              <mat-option value="vA5">Steep and /or narrow driveway</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
+            <mat-label>Access into home</mat-label>
+            <mat-select required>
+              <mat-option value="hA1">Single level, no stairs, good access</mat-option>
+              <mat-option value="hA2">Has internal or external stairs</mat-option>
+              <mat-option value="hA3">Narrow entry point(s)</mat-option>
+              <mat-option value="hA4">Spiral or narrow staircase</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <h5>Delivery address</h5>
+
+        <div class="row">
+          <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
+            <mat-label>Vehicle access</mat-label>
+            <mat-select required>
+              <mat-option value="vA1">Good and/or flat access and truck can fit in the driveway</mat-option>
+              <mat-option value="vA2">Access good but on-street parking is only available.</mat-option>
+              <mat-option value="vA3">Long driveway, but wide enough for a truck</mat-option>
+              <mat-option value="vA4">Overhanging spouting, trees or low hanging wires over driveway</mat-option>
+              <mat-option value="vA5">Steep and /or narrow driveway</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
+            <mat-label>Access into home</mat-label>
+            <mat-select required>
+              <mat-option value="hA1">Single level, no stairs, good access</mat-option>
+              <mat-option value="hA2">Has internal or external stairs</mat-option>
+              <mat-option value="hA3">Narrow entry point(s)</mat-option>
+              <mat-option value="hA4">Spiral or narrow staircase</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <br>
+
+        <mat-form-field style="width: 100%" appearance="fill">
+          <mat-label>Addtional information or questions you have for our team</mat-label>
+          <textarea
+            placeholder="Please use this space to describe any, special pieces of furniture, unusual items, statues, artwork etc that you'd like to make us aware of. This should include specific heavy items above 50kg's"
+            matInput></textarea>
+        </mat-form-field>
+        <br>
         <div>
-          <button style="margin-right: 10px;" color="primary" mat-raised-button matStepperPrevious>Back</button>
+          <button style="margin-right: 10px;" color="accent" mat-raised-button matStepperPrevious>Back</button>
           <button style="margin-left: 10px;" color="primary" mat-raised-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
+      <h6 style="margin-top: 10px;">
+        We just need a little more information to make sure things run smoothly so that we can provide an accurate quote
+        as quickly as possible.
+      </h6>
+      <br>
+      <ng-template matStepLabel>Conformation</ng-template>
+      <h4 style="text-align: left; width: 100%;">
+        Billing Details
+      </h4>
+
+      <div class="row">
+        <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
+          <mat-label>Enter your email</mat-label>
+          <input matInput placeholder="pat@example.com" required>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
+          <mat-label>Phone number</mat-label>
+          <input matInput type="number" maxlength="10" required>
+          <mat-icon matSuffix>phone</mat-icon>
+          <mat-hint>Include area code</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <br>
+      <h4 style="text-align: left; width: 100%;">
+        Pick-up Contact Details
+      </h4>
+
+      <div class="row">
+        <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
+          <mat-label>Full Name</mat-label>
+          <input matInput required>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
+          <mat-label>Contact number</mat-label>
+          <input matInput type="number" maxlength="10" required>
+          <mat-icon matSuffix>phone</mat-icon>
+          <mat-hint>Include area code</mat-hint>
+        </mat-form-field>
+      </div>
+      <br>
+      <h4 style="text-align: left; width: 100%;">
+        Delivery Contact Details <button style="margin-left: 10px;" color="primary" mat-button>Copy above
+          details</button>
+      </h4>
+
+      <div class="row">
+        <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
+          <mat-label>Full Name</mat-label>
+          <input matInput required>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
+          <mat-label>Contact number</mat-label>
+          <input matInput type="number" maxlength="10" required>
+          <mat-icon matSuffix>phone</mat-icon>
+          <mat-hint>Include area code</mat-hint>
+        </mat-form-field>
+      </div>
+      <br>
+      <mat-form-field style="width: 100%" appearance="fill">
+        <mat-label>Additional Notes</mat-label>
+        <textarea
+          placeholder="Please add any additional information that will help us do a great job for you or that we should know about. If any single item is above 50kg it should be noted here."
+          matInput></textarea>
+      </mat-form-field>
+      <br>
+      <h4 style="text-align: left; width: 100%;">
+        Payment
+      </h4>
+      <div class="row" style="text-align: left;">
+        <mat-checkbox class="col-md-6 col-sm-12" [(ngModel)]="checked" [ngModelOptions]="{standalone: true}">Payment
+          will be made at the pick up address</mat-checkbox>
+        <mat-checkbox class="col-md-6 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]=" {standalone: true}">
+          Payment will be made on delivery
+        </mat-checkbox>
+      </div>
+      <br>
+      <h4 style="text-align: left; width: 100%;">
+        Terms and Conditions
+      </h4>
+      <mat-checkbox color="primary" style="width: 100%;" [(ngModel)]="isConfirm" [ngModelOptions]="{standalone: true}">
+        Please confirm you agree to our terms and conditions.</mat-checkbox>
+      <br>
       <div>
-        <button color="primary" mat-raised-button matStepperPrevious>Back</button>
-        <button color="primary" mat-raised-button (click)="stepper.reset()">Reset</button>
+        <br>
+        <button style="margin-right: 10px;" color="accent" mat-raised-button matStepperPrevious>Back</button>
+        <button style="margin-left: 10px;" color="primary" mat-raised-button (click)="stepper.reset()">Submit</button>
       </div>
     </mat-step>
   </mat-vertical-stepper>
@@ -181,9 +396,7 @@
             <div class="footer-head">
               <div class="footer-logo">
                 <img class="logoImage" src="assets/img/logo.png">
-                <!-- <h2><span>Comfort</span> Movers</h2> -->
               </div>
-
               <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
                 totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>
               <div class="footer-icons">
@@ -205,7 +418,6 @@
             </div>
           </div>
         </div>
-        <!-- end single footer -->
         <div class="col-md-6">
           <div class="footer-content">
             <div class="footer-head">
@@ -221,22 +433,6 @@
             </div>
           </div>
         </div>
-        <!-- end single footer -->
-        <!-- <div class="col-md-4">
-          <div class="footer-content">
-            <div class="footer-head">
-              <h4>Instagram</h4>
-              <div class="flicker-img">
-                <a href="#"><img src="assets/img/portfolio/1.jpg" alt=""></a>
-                <a href="#"><img src="assets/img/portfolio/2.jpg" alt=""></a>
-                <a href="#"><img src="assets/img/portfolio/3.jpg" alt=""></a>
-                <a href="#"><img src="assets/img/portfolio/4.jpg" alt=""></a>
-                <a href="#"><img src="assets/img/portfolio/5.jpg" alt=""></a>
-                <a href="#"><img src="assets/img/portfolio/6.jpg" alt=""></a>
-              </div>
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
   </div>
@@ -253,7 +449,7 @@
       </div>
     </div>
   </div>
-</footer><!-- End  Footer -->
+</footer>
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
     class="bi bi-arrow-up-short"></i></a>
