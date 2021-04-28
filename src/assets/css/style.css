@@ -275,7 +275,7 @@ div#preloader {
 @media (max-width: 768px) {
   #header {
     height: 64px;
-    background: rgba(0, 0, 0, 0.8);
+    background: black;
   }
   #header .logo h1 {
     font-size: 28px;
@@ -297,7 +297,7 @@ div#preloader {
   right: 0;
   top: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: black;
 }
 
 @media (min-width: 1025px) {
