@@ -23,9 +23,45 @@
   pointer-events: none !important;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  color: #2480fd !important;
+  font-weight: bold;
+}
+
 @media (max-width: 991px) {
   .formContainer {
     width: 100%;
     margin-left: 0;
+  }
+  h1 {
+    font-size: 28px;
+  }
+  
+  h2 {
+    font-size: 25px;
+  }
+
+  h3 {
+    font-size: 22px;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  h5 {
+    font-size: 15px;
+  }
+
+  h6 {
+    font-size: 13px;
+  }
+  
+  p {
+    font-size: 11px;
+  }
+
+  .mainContainer {
+    font-size: 11px;
   }
 }

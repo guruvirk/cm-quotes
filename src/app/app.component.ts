@@ -382,4 +382,8 @@ export class AppComponent {
     this.saveChanges()
   }
 
+  openTNC() {
+    this.uxService.showInfo("TNC")
+  }
+
 }
