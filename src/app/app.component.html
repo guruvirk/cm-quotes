@@ -25,276 +25,302 @@
   <h2 class="heading">Moving & Delivery Online Quote Wizard
   </h2>
 
-  <mat-vertical-stepper [linear]="false" #stepper>
-    <mat-step [stepControl]="firstFormGroup" [editable]="true">
-      <form [formGroup]="firstFormGroup">
-        <h6 style="margin-top: 10px;">
-          Please let us know the pick-up and delivery address, what time you would like us to come and whether you would
-          like
-          to book our one man or two man service.
-        </h6>
-        <ng-template matStepLabel>When and where</ng-template>
-        <div class="formContainer">
-          <div class="row">
-            <mat-form-field class="col-md-9 col-sm-12">
-              <mat-label>Where from</mat-label>
-              <input matInput placeholder="Ex. 1 Main St, Auckland, NZ" required>
-            </mat-form-field>
-            <mat-form-field class="col-md-3 col-sm-12" appearance="fill">
-              <mat-label>Choose Floor</mat-label>
-              <mat-select required>
-                <mat-option value="ground">Ground Floor</mat-option>
-                <mat-option value="1st">1st Floor</mat-option>
-                <mat-option value="2nd">2nd Floor</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-checkbox color="primary" class="col-md-6 col-sm-12" [(ngModel)]="ParkingAwayFrom"
-              [ngModelOptions]="{standalone: true}">Parking
-              is
-              more
-              than 10m away?
-            </mat-checkbox>
-            <mat-checkbox color="primary" class="col-md-6 col-sm-12" [(ngModel)]="elevatorAvlFrom"
-              [ngModelOptions]="{standalone: true}">
-              An elevator is avaliable?</mat-checkbox>
-            <mat-form-field class="col-md-9 col-sm-12">
-              <mat-label>Where to</mat-label>
-              <input matInput placeholder="Ex. 1 Main St, Auckland, NZ" required>
-            </mat-form-field>
-            <mat-form-field class="col-md-3 col-sm-12" appearance="fill">
-              <mat-label>Choose Floor</mat-label>
-              <mat-select required>
-                <mat-option value="ground">Ground Floor</mat-option>
-                <mat-option value="1st">1st Floor</mat-option>
-                <mat-option value="2nd">2nd Floor</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-checkbox color="primary" class="col-md-6 col-sm-12" [(ngModel)]="ParkingAwayTo"
-              [ngModelOptions]="{standalone: true}">Parking is
-              more
-              than 10m away?
-            </mat-checkbox>
-            <mat-checkbox color="primary" class="col-md-6 col-sm-12" [(ngModel)]="elevatorAvlTo"
-              [ngModelOptions]="{standalone: true}">
-              An elevator is avaliable?</mat-checkbox>
-          </div>
-          <br>
-          <mat-checkbox color="primary" style="width: 100%;" [(ngModel)]="isConfirm"
+  <mat-vertical-stepper [linear]="true" #stepper>
+    <mat-step [stepControl]="firstFormGroup" [editable]="false">
+      <h6 style="margin-top: 10px;">
+        Please let us know the pick-up and delivery address, what time you would like us to come and whether you would
+        like
+        to book our one man or two man service.
+      </h6>
+      <ng-template matStepLabel>When and where</ng-template>
+      <div class="formContainer">
+        <div class="row">
+          <google-address class="col-md-9 col-sm-12" [line1]="order.where.line1" (fullAddress)="setWhereAddress($event)"
+            [label]="'Where from'">
+          </google-address>
+          <mat-form-field class="col-md-3 col-sm-12" appearance="fill">
+            <mat-label>Choose Floor</mat-label>
+            <mat-select [(ngModel)]="order.where.floor" (selectionChange)="saveChanges()" required>
+              <ng-container *ngFor="let floor of floors">
+                <mat-option [value]="floor.name">{{floor.value}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+          <mat-checkbox color="primary" class="col-md-6 col-sm-12" [(ngModel)]="order.where.isParkingAway"
+            [ngModelOptions]="{standalone: true}">Parking
+            is
+            more
+            than 10m away?
+          </mat-checkbox>
+          <mat-checkbox color="primary" class="col-md-6 col-sm-12" [(ngModel)]="order.where.isElevator"
             [ngModelOptions]="{standalone: true}">
-            Confirm the above information is correct.</mat-checkbox>
-          <br>
-          <div class="row">
-            <mat-form-field class="col-md-9 col-sm-12" appearance="fill">
-              <mat-label>Pick Up Date</mat-label>
-              <input readonly matInput [matDatepicker]="picker" [min]="minDate" required>
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field class="col-md-3 col-sm-12" appearance="fill">
-              <mat-label>Time</mat-label>
-              <mat-select required>
-                <mat-option value="8-9">8AM to 9AM</mat-option>
-                <mat-option value="12-2">12PM to 2PM</mat-option>
-                <mat-option value="2-4">2PM to 4PM</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <br>
-          <div>
-            <button color="primary" mat-raised-button matStepperNext>Next</button>
-          </div>
+            An elevator is avaliable?</mat-checkbox>
+          <google-address class="col-md-9 col-sm-12" [line1]="order.to.line1" (fullAddress)="setToAddress($event)"
+            [label]="'Where to'">
+          </google-address>
+          <mat-form-field class="col-md-3 col-sm-12" appearance="fill">
+            <mat-label>Choose Floor</mat-label>
+            <mat-select [(ngModel)]="order.to.floor" (selectionChange)="saveChanges()" required>
+              <ng-container *ngFor="let floor of floors">
+                <mat-option [value]="floor.name">{{floor.value}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+          <mat-checkbox color="primary" class="col-md-6 col-sm-12" [(ngModel)]="order.to.isParkingAway"
+            [ngModelOptions]="{standalone: true}">Parking is
+            more
+            than 10m away?
+          </mat-checkbox>
+          <mat-checkbox color="primary" class="col-md-6 col-sm-12" [(ngModel)]="order.to.isElevator"
+            [ngModelOptions]="{standalone: true}">
+            An elevator is avaliable?</mat-checkbox>
         </div>
-      </form>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup" [editable]="true">
-      <form [formGroup]="secondFormGroup">
-        <h6 style="margin-top: 10px;">
-          Please let us know the pick-up and delivery address, what time you would like us to come and whether you would
-          like
-          to book our one man or two man service.
-        </h6>
-        <ng-template matStepLabel>House Move Details</ng-template>
-
-        <h4 style="text-align: left; width: 100%;">
-          Size of move
-        </h4>
-
-        <div class="row" style="text-align: left;">
-          <section class="col-md-6">
-            <span>
-              <mat-checkbox>
-                Family Sized Homes (3+ bedrooms)
-              </mat-checkbox>
-            </span>
-            <span>
-              <ul style="margin-left: 20px;">
-                <li>
-                  <mat-checkbox>
-                    3 bedrooms
-                  </mat-checkbox>
-                </li>
-                <li>
-                  <mat-checkbox>
-                    4 bedrooms
-                  </mat-checkbox>
-                </li>
-                <li>
-                  <mat-checkbox>
-                    5 bedrooms
-                  </mat-checkbox>
-                </li>
-              </ul>
-            </span>
-          </section>
-          <section class="col-md-6">
-            <mat-checkbox>
-              Apartment / Small House Move (1-2 bedrooms)
-            </mat-checkbox>
-            <br>
-            <mat-checkbox>
-              Office Move / Business Relocation
-            </mat-checkbox>
-          </section>
-        </div>
-
         <br>
-
-        <h4 style="text-align: left; width: 100%;">
-          What services do you require
-        </h4>
-
-        <div class="row" style="text-align: left;">
-          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="checked" [ngModelOptions]="{standalone: true}">Full Pack
-            and Move Services</mat-checkbox>
-          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
-            Move Only (no packing req.)
-          </mat-checkbox>
-          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
-            Cleaning</mat-checkbox>
-        </div>
-
+        <mat-checkbox color="primary" style="width: 100%;" [(ngModel)]="isConfirm"
+          [ngModelOptions]="{standalone: true}">
+          Confirm the above information is correct.</mat-checkbox>
         <br>
-
-        <h4 style="text-align: left; width: 100%;">
-          Special or additional items
-        </h4>
-
-        <div class="row" style="text-align: left;">
-          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="checked" [ngModelOptions]="{standalone: true}">Upright
-            Piano</mat-checkbox>
-          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]=" {standalone: true}">
-            Outdoor Plants
-          </mat-checkbox>
-          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
-            Treadmill</mat-checkbox>
-          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="checked" [ngModelOptions]="{standalone: true}">Baby
-            Grand</mat-checkbox>
-          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
-            Heavy Planters
-          </mat-checkbox>
-          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">Gym
-            Sets</mat-checkbox>
-          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="checked" [ngModelOptions]="{standalone: true}">Grand
-            Piano</mat-checkbox>
-          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
-            Pool Table Standard
-          </mat-checkbox>
-          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">Spa
-            pool Small</mat-checkbox>
-          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
-            Large BBQ</mat-checkbox>
-          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
-            Pool Table Slate</mat-checkbox>
-          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">Spa
-            pool Large</mat-checkbox>
-          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
-            Outdoor Furniture</mat-checkbox>
-          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
-            Side by Side Fridge</mat-checkbox>
-          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
-            Large Fish Tank</mat-checkbox>
-          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
-            Trampoline</mat-checkbox>
-          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
-            Garden Shed</mat-checkbox>
-          <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]="{standalone: true}">
-            Heavy Garage Items</mat-checkbox>
-        </div>
-
-        <br>
-
-        <h4 style="text-align: left; width: 100%;">
-          Location and access
-        </h4>
-
-        <h5>Pick up address</h5>
-
         <div class="row">
-          <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
-            <mat-label>Vehicle access</mat-label>
-            <mat-select required>
-              <mat-option value="vA1">Good and/or flat access and truck can fit in the driveway</mat-option>
-              <mat-option value="vA2">Access good but on-street parking is only available.</mat-option>
-              <mat-option value="vA3">Long driveway, but wide enough for a truck</mat-option>
-              <mat-option value="vA4">Overhanging spouting, trees or low hanging wires over driveway</mat-option>
-              <mat-option value="vA5">Steep and /or narrow driveway</mat-option>
-            </mat-select>
+          <mat-form-field class="col-md-9 col-sm-12" appearance="fill">
+            <mat-label>Pick Up Date</mat-label>
+            <input (change)="saveChanges()" [(ngModel)]="order.date" readonly matInput [matDatepicker]="picker"
+              [min]="minDate" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
-
-          <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
-            <mat-label>Access into home</mat-label>
-            <mat-select required>
-              <mat-option value="hA1">Single level, no stairs, good access</mat-option>
-              <mat-option value="hA2">Has internal or external stairs</mat-option>
-              <mat-option value="hA3">Narrow entry point(s)</mat-option>
-              <mat-option value="hA4">Spiral or narrow staircase</mat-option>
+          <mat-form-field class="col-md-3 col-sm-12" appearance="fill">
+            <mat-label>Time</mat-label>
+            <mat-select [(ngModel)]="order.timeslot" (selectionChange)="saveChanges()" required>
+              <mat-option value="8-9">8AM to 9AM</mat-option>
+              <mat-option value="12-2">12PM to 2PM</mat-option>
+              <mat-option value="2-4">2PM to 4PM</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
-
-        <h5>Delivery address</h5>
-
-        <div class="row">
-          <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
-            <mat-label>Vehicle access</mat-label>
-            <mat-select required>
-              <mat-option value="vA1">Good and/or flat access and truck can fit in the driveway</mat-option>
-              <mat-option value="vA2">Access good but on-street parking is only available.</mat-option>
-              <mat-option value="vA3">Long driveway, but wide enough for a truck</mat-option>
-              <mat-option value="vA4">Overhanging spouting, trees or low hanging wires over driveway</mat-option>
-              <mat-option value="vA5">Steep and /or narrow driveway</mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
-            <mat-label>Access into home</mat-label>
-            <mat-select required>
-              <mat-option value="hA1">Single level, no stairs, good access</mat-option>
-              <mat-option value="hA2">Has internal or external stairs</mat-option>
-              <mat-option value="hA3">Narrow entry point(s)</mat-option>
-              <mat-option value="hA4">Spiral or narrow staircase</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-
-        <br>
-
-        <mat-form-field style="width: 100%" appearance="fill">
-          <mat-label>Addtional information or questions you have for our team</mat-label>
-          <textarea
-            placeholder="Please use this space to describe any, special pieces of furniture, unusual items, statues, artwork etc that you'd like to make us aware of. This should include specific heavy items above 50kg's"
-            matInput></textarea>
-        </mat-form-field>
         <br>
         <div>
-          <button style="margin-right: 10px;" color="accent" mat-raised-button matStepperPrevious>Back</button>
-          <button style="margin-left: 10px;" color="primary" mat-raised-button matStepperNext>Next</button>
+          <button color="primary" mat-raised-button (click)="firstNext(stepper)">Next</button>
         </div>
-      </form>
+      </div>
     </mat-step>
-    <mat-step>
+    <mat-step [stepControl]="secondFormGroup" [editable]="false">
       <h6 style="margin-top: 10px;">
-        We just need a little more information to make sure things run smoothly so that we can provide an accurate quote
+        Please let us know the pick-up and delivery address, what time you would like us to come and whether you would
+        like
+        to book our one man or two man service.
+      </h6>
+      <ng-template matStepLabel>House Move Details</ng-template>
+
+      <h4 style="text-align: left; width: 100%;">
+        Size of move
+      </h4>
+
+      <div class="row" style="text-align: left;">
+        <section class="col-md-6">
+          <span>
+            <mat-checkbox [checked]="order.size == 'family-home'" (change)="setSize($event, 'family-home')">
+              Family Sized Homes (3+ bedrooms)
+            </mat-checkbox>
+          </span>
+          <span>
+            <ul style="margin-left: 20px;">
+              <li>
+                <mat-checkbox [disabled]="order.size != 'family-home'" [checked]="order.sizeDetails == '3-bedrooms'"
+                  (change)="setSizeDetails($event, '3-bedrooms')">
+                  3 bedrooms
+                </mat-checkbox>
+              </li>
+              <li>
+                <mat-checkbox [disabled]="order.size != 'family-home'" [checked]="order.sizeDetails == '4-bedrooms'"
+                  (change)="setSizeDetails($event, '4-bedrooms')">
+                  4 bedrooms
+                </mat-checkbox>
+              </li>
+              <li>
+                <mat-checkbox [disabled]="order.size != 'family-home'" [checked]="order.sizeDetails == '5-bedrooms'"
+                  (change)="setSizeDetails($event, '5-bedrooms')">
+                  5 bedrooms
+                </mat-checkbox>
+              </li>
+            </ul>
+          </span>
+        </section>
+        <section class="col-md-6">
+          <mat-checkbox [checked]="order.size == 'apartment'" (change)="setSize($event, 'apartment')">
+            Apartment / Small House Move (1-2 bedrooms)
+          </mat-checkbox>
+          <br>
+          <mat-checkbox [checked]="order.size == 'office'" (change)="setSize($event, 'office')">
+            Office Move / Business Relocation
+          </mat-checkbox>
+        </section>
+      </div>
+
+      <br>
+
+      <h4 style="text-align: left; width: 100%;">
+        What services do you require
+      </h4>
+
+      <div class="row" style="text-align: left;">
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="!order.isMoveOnly" (change)="moveOnly(false)">Full
+          Pack
+          and Move Services</mat-checkbox>
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="order.isMoveOnly" (change)="moveOnly(true)">
+          Move Only (no packing req.)
+        </mat-checkbox>
+        <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="order.isCleaning" [ngModelOptions]="{standalone: true}">
+          Cleaning</mat-checkbox>
+      </div>
+
+      <br>
+
+      <h4 style="text-align: left; width: 100%;">
+        Special or additional items
+      </h4>
+
+      <div class="row" style="text-align: left;">
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('upright-piano')"
+          (change)="setSpeciality($event, 'upright-piano')">Upright
+          Piano</mat-checkbox>
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('outdoor-plants')"
+          (change)="setSpeciality($event, 'outdoor-plants')">
+          Outdoor Plants
+        </mat-checkbox>
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('treadmill')"
+          (change)="setSpeciality($event, 'treadmill')">
+          Treadmill</mat-checkbox>
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('baby-grand')"
+          (change)="setSpeciality($event, 'baby-grand')">Baby
+          Grand</mat-checkbox>
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('heavy-planters')"
+          (change)="setSpeciality($event, 'heavy-planters')">
+          Heavy Planters
+        </mat-checkbox>
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('gym-sets')"
+          (change)="setSpeciality($event, 'gym-sets')">Gym
+          Sets</mat-checkbox>
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('grand-piano')"
+          (change)="setSpeciality($event, 'grand-piano')">Grand
+          Piano</mat-checkbox>
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('pool-table-standard')"
+          (change)="setSpeciality($event, 'pool-table-standard')">
+          Pool Table Standard
+        </mat-checkbox>
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('spa-pool-small')"
+          (change)="setSpeciality($event, 'spa-pool-small')">Spa
+          pool Small</mat-checkbox>
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('large-bbq')"
+          (change)="setSpeciality($event, 'large-bbq')">
+          Large BBQ</mat-checkbox>
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('pool-table-slate')"
+          (change)="setSpeciality($event, 'pool-table-slate')">
+          Pool Table Slate</mat-checkbox>
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('spa-pool-large')"
+          (change)="setSpeciality($event, 'spa-pool-large')">Spa
+          pool Large</mat-checkbox>
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('outdoor-furniture')"
+          (change)="setSpeciality($event, 'outdoor-furniture')">
+          Outdoor Furniture</mat-checkbox>
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('side-by-side-fridge')"
+          (change)="setSpeciality($event, 'side-by-side-fridge')">
+          Side by Side Fridge</mat-checkbox>
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('large-fish-tank')"
+          (change)="setSpeciality($event, 'large-fish-tank')">
+          Large Fish Tank</mat-checkbox>
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('trampoline')"
+          (change)="setSpeciality($event, 'trampoline')">
+          Trampoline</mat-checkbox>
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('garden-shed')"
+          (change)="setSpeciality($event, 'garden-shed')">
+          Garden Shed</mat-checkbox>
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('heavy-garage-items')"
+          (change)="setSpeciality($event, 'heavy-garage-items')">
+          Heavy Garage Items</mat-checkbox>
+      </div>
+
+      <br>
+
+      <h4 style="text-align: left; width: 100%;">
+        Location and access
+      </h4>
+
+      <h5>Pick up address</h5>
+
+      <div class="row">
+        <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
+          <mat-label>Vehicle access</mat-label>
+          <mat-select [(ngModel)]="order.where.vehicleAccess" (selectionChange)="saveChanges()" required>
+            <mat-option value="Good and/or flat access and truck can fit in the driveway">Good and/or flat access and
+              truck can fit in the driveway</mat-option>
+            <mat-option value="Access good but on-street parking is only available.">Access good but on-street parking
+              is only available.</mat-option>
+            <mat-option value="Long driveway, but wide enough for a truck">Long driveway, but wide enough for a truck
+            </mat-option>
+            <mat-option value="Overhanging spouting, trees or low hanging wires over driveway">Overhanging spouting,
+              trees or low hanging wires over driveway</mat-option>
+            <mat-option value="Steep and /or narrow driveway">Steep and /or narrow driveway</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
+          <mat-label>Access into home</mat-label>
+          <mat-select [(ngModel)]="order.where.accessToHome" (selectionChange)="saveChanges()" required>
+            <mat-option value="Single level, no stairs, good access">Single level, no stairs, good access</mat-option>
+            <mat-option value="Has internal or external stairs">Has internal or external stairs</mat-option>
+            <mat-option value="Narrow entry point(s)">Narrow entry point(s)</mat-option>
+            <mat-option value="Spiral or narrow staircase">Spiral or narrow staircase</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <h5>Delivery address</h5>
+
+      <div class="row">
+        <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
+          <mat-label>Vehicle access</mat-label>
+          <mat-select [(ngModel)]="order.to.vehicleAccess" (selectionChange)="saveChanges()" required>
+            <mat-option value="Good and/or flat access and truck can fit in the driveway">Good and/or flat access and
+              truck can fit in the driveway</mat-option>
+            <mat-option value="Access good but on-street parking is only available.">Access good but on-street parking
+              is only available.</mat-option>
+            <mat-option value="Long driveway, but wide enough for a truck">Long driveway, but wide enough for a truck
+            </mat-option>
+            <mat-option value="Overhanging spouting, trees or low hanging wires over driveway">Overhanging spouting,
+              trees or low hanging wires over driveway</mat-option>
+            <mat-option value="Steep and /or narrow driveway">Steep and /or narrow driveway</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
+          <mat-label>Access into home</mat-label>
+          <mat-select [(ngModel)]="order.to.accessToHome" (selectionChange)="saveChanges()" required>
+            <mat-option value="Single level, no stairs, good access">Single level, no stairs, good access</mat-option>
+            <mat-option value="Has internal or external stairs">Has internal or external stairs</mat-option>
+            <mat-option value="Narrow entry point(s)">Narrow entry point(s)</mat-option>
+            <mat-option value="Spiral or narrow staircase">Spiral or narrow staircase</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <br>
+
+      <mat-form-field style="width: 100%" appearance="fill">
+        <mat-label>Addtional information or questions you have for our team</mat-label>
+        <textarea (change)="saveChanges()" [(ngModel)]="order.deliveryInfo"
+          placeholder="Please use this space to describe any, special pieces of furniture, unusual items, statues, artwork etc that you'd like to make us aware of. This should include specific heavy items above 50kg's"
+          matInput></textarea>
+      </mat-form-field>
+      <br>
+      <div>
+        <button style="margin-right: 10px;" color="accent" mat-raised-button (click)="secondBack(stepper)">Back</button>
+        <button style="margin-left: 10px;" color="primary" mat-raised-button (click)="secondNext(stepper)">Next</button>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup" [editable]="false">
+      <h6 style="margin-top: 10px;">
+        We just need a little more information to make sure things run smoothly so that we can provide an accurate
+        quote
         as quickly as possible.
       </h6>
       <br>
@@ -306,12 +332,12 @@
       <div class="row">
         <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
           <mat-label>Enter your email</mat-label>
-          <input matInput placeholder="pat@example.com" required>
+          <input matInput (change)="saveChanges()" [(ngModel)]="order.email" placeholder="pat@example.com" required>
         </mat-form-field>
 
         <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
           <mat-label>Phone number</mat-label>
-          <input matInput type="number" maxlength="10" required>
+          <input matInput (change)="saveChanges()" [(ngModel)]="order.phone" type="number" maxlength="10" required>
           <mat-icon matSuffix>phone</mat-icon>
           <mat-hint>Include area code</mat-hint>
         </mat-form-field>
@@ -325,31 +351,33 @@
       <div class="row">
         <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
           <mat-label>Full Name</mat-label>
-          <input matInput required>
+          <input (change)="saveChanges()" [(ngModel)]="order.where.name" matInput required>
         </mat-form-field>
 
         <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
           <mat-label>Contact number</mat-label>
-          <input matInput type="number" maxlength="10" required>
+          <input (change)="saveChanges()" [(ngModel)]="order.where.phone" matInput type="number" maxlength="10"
+            required>
           <mat-icon matSuffix>phone</mat-icon>
           <mat-hint>Include area code</mat-hint>
         </mat-form-field>
       </div>
       <br>
       <h4 style="text-align: left; width: 100%;">
-        Delivery Contact Details <button style="margin-left: 10px;" color="primary" mat-button>Copy above
+        Delivery Contact Details <button (click)="copypickUp()" style="margin-left: 10px;" color="primary"
+          mat-button>Copy above
           details</button>
       </h4>
 
       <div class="row">
         <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
           <mat-label>Full Name</mat-label>
-          <input matInput required>
+          <input (change)="saveChanges()" [(ngModel)]="order.to.name" matInput required>
         </mat-form-field>
 
         <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
           <mat-label>Contact number</mat-label>
-          <input matInput type="number" maxlength="10" required>
+          <input (change)="saveChanges()" [(ngModel)]="order.to.phone" matInput type="number" maxlength="10" required>
           <mat-icon matSuffix>phone</mat-icon>
           <mat-hint>Include area code</mat-hint>
         </mat-form-field>
@@ -357,7 +385,7 @@
       <br>
       <mat-form-field style="width: 100%" appearance="fill">
         <mat-label>Additional Notes</mat-label>
-        <textarea
+        <textarea (change)="saveChanges()" [(ngModel)]="order.additionalInfo"
           placeholder="Please add any additional information that will help us do a great job for you or that we should know about. If any single item is above 50kg it should be noted here."
           matInput></textarea>
       </mat-form-field>
@@ -366,9 +394,10 @@
         Payment
       </h4>
       <div class="row" style="text-align: left;">
-        <mat-checkbox class="col-md-6 col-sm-12" [(ngModel)]="checked" [ngModelOptions]="{standalone: true}">Payment
+        <mat-checkbox class="col-md-6 col-sm-12" [checked]="!order.paymentAtDelivery" (change)="paymentChange(false)">
+          Payment
           will be made at the pick up address</mat-checkbox>
-        <mat-checkbox class="col-md-6 col-sm-12" [(ngModel)]="indeterminate" [ngModelOptions]=" {standalone: true}">
+        <mat-checkbox class="col-md-6 col-sm-12" [checked]="order.paymentAtDelivery" (change)="paymentChange(true)">
           Payment will be made on delivery
         </mat-checkbox>
       </div>
@@ -376,13 +405,13 @@
       <h4 style="text-align: left; width: 100%;">
         Terms and Conditions
       </h4>
-      <mat-checkbox color="primary" style="width: 100%;" [(ngModel)]="isConfirm" [ngModelOptions]="{standalone: true}">
+      <mat-checkbox color="primary" style="width: 100%;" [(ngModel)]="isTNC" [ngModelOptions]="{standalone: true}">
         Please confirm you agree to our terms and conditions.</mat-checkbox>
       <br>
       <div>
         <br>
-        <button style="margin-right: 10px;" color="accent" mat-raised-button matStepperPrevious>Back</button>
-        <button style="margin-left: 10px;" color="primary" mat-raised-button (click)="stepper.reset()">Submit</button>
+        <button style="margin-right: 10px;" color="accent" mat-raised-button (click)="thirdBack()">Back</button>
+        <button style="margin-left: 10px;" color="primary" mat-raised-button (click)="thirdNext()">Submit</button>
       </div>
     </mat-step>
   </mat-vertical-stepper>

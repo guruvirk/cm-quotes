@@ -3,13 +3,17 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule, MatNativeDateModule, MatSelectModule, MatStepperModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule, MatNativeDateModule, MatSelectModule, MatSnackBarModule, MatStepperModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GooglePlacesDirective } from './directives/google-places.directive';
+import { GoogleAddressComponent } from './components/google-address/google-address.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GooglePlacesDirective,
+    GoogleAddressComponent
   ],
   imports: [
     BrowserModule,
@@ -25,8 +29,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatDatepickerModule,
     MatSelectModule,
     MatNativeDateModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
   ],
+  exports: [GooglePlacesDirective],
   providers: [],
   bootstrap: [AppComponent]
 })

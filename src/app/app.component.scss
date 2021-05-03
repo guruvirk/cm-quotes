@@ -19,6 +19,10 @@
   margin-left: 15%;
 }
 
+::ng-deep .mat-vertical-stepper-header{
+  pointer-events: none !important;
+}
+
 @media (max-width: 991px) {
   .formContainer {
     width: 100%;
