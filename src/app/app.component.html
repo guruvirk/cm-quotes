@@ -25,8 +25,11 @@
   <h2 class="heading">Moving & Delivery Online Quote Wizard
   </h2>
 
-  <mat-vertical-stepper [linear]="true" #stepper>
-    <mat-step [stepControl]="firstFormGroup" [editable]="false">
+  <mat-vertical-stepper [linear]="false" #stepper>
+    <ng-template matStepperIcon="edit">
+      <mat-icon>check</mat-icon>
+    </ng-template>
+    <mat-step [stepControl]="firstFormGroup" [editable]="true">
       <h6 style="margin-top: 10px;">
         Please let us know the pick-up and delivery address, what time you would like us to come and whether you would
         like
@@ -103,7 +106,7 @@
         </div>
       </div>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup" [editable]="false">
+    <mat-step [stepControl]="secondFormGroup" [editable]="true">
       <h6 style="margin-top: 10px;">
         Please let us know the pick-up and delivery address, what time you would like us to come and whether you would
         like
@@ -317,7 +320,7 @@
         <button style="margin-left: 10px;" color="primary" mat-raised-button (click)="secondNext(stepper)">Next</button>
       </div>
     </mat-step>
-    <mat-step [stepControl]="thirdFormGroup" [editable]="false">
+    <mat-step [stepControl]="thirdFormGroup" [editable]="true">
       <h6 style="margin-top: 10px;">
         We just need a little more information to make sure things run smoothly so that we can provide an accurate
         quote
@@ -410,8 +413,9 @@
       <br>
       <div>
         <br>
-        <button style="margin-right: 10px;" color="accent" mat-raised-button (click)="thirdBack()">Back</button>
-        <button style="margin-left: 10px;" color="primary" mat-raised-button (click)="thirdNext()">Submit</button>
+        <button style="margin-right: 10px;" color="accent" mat-raised-button (click)="thirdBack(stepper)">Back</button>
+        <button style="margin-left: 10px;" color="primary" mat-raised-button
+          (click)="thirdNext(stepper)">Submit</button>
       </div>
     </mat-step>
   </mat-vertical-stepper>

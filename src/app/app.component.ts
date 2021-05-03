@@ -193,9 +193,9 @@ export class AppComponent {
       this.uxService.handleError("Please confirm above information")
       return
     }
+    stepper.next();
     this.step = 1
     this.saveChanges()
-    stepper.next();
   }
 
   thirdNext(stepper: MatStepper) {
@@ -227,7 +227,6 @@ export class AppComponent {
       this.uxService.handleError("Please confirm above information")
       return
     }
-    this.saveChanges()
     this.uxService.showInfo("Submitted SuccessFully")
     window.localStorage.clear()
     this.order = new Order({})
@@ -237,15 +236,15 @@ export class AppComponent {
   }
 
   secondBack(stepper: MatStepper) {
-    this.step = 1
-    this.saveChanges()
     stepper.previous();
+    this.step = 0
+    this.saveChanges()
   }
 
   thirdBack(stepper: MatStepper) {
-    this.step = 2
-    this.saveChanges()
     stepper.previous();
+    this.step = 1
+    this.saveChanges()
   }
 
   copypickUp() {
@@ -279,9 +278,9 @@ export class AppComponent {
       this.uxService.handleError("Please select Delivery address Access into home")
       return
     }
+    stepper.next();
     this.step = 2
     this.saveChanges()
-    stepper.next();
   }
 
   setWhereAddress(address) {

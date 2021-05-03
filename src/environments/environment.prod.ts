@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  error: {
+    "INVALID_DETAILS": "Invalid Details"
+  }
 };

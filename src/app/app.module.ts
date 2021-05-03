@@ -8,12 +8,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GooglePlacesDirective } from './directives/google-places.directive';
 import { GoogleAddressComponent } from './components/google-address/google-address.component';
+import { SnackBarComponent } from './services/ux.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     GooglePlacesDirective,
-    GoogleAddressComponent
+    GoogleAddressComponent,
+    SnackBarComponent
   ],
   imports: [
     BrowserModule,
