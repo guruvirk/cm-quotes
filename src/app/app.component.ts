@@ -20,7 +20,7 @@ export class AppComponent {
   isTNC: boolean = false
   isConfirm: boolean = false
   minDate = new Date()
-  isProgress = true
+  isProgress = false
 
   @ViewChild('stepper', null) private myStepper: MatStepper;
 
@@ -228,13 +228,13 @@ export class AppComponent {
       this.uxService.handleError("Please accept Terms and Conditions")
       return
     }
-    // this.uxService.showInfo("Submitted SuccessFully")
+    this.uxService.showInfo("Submitted SuccessFully")
+    this.isProgress = true
     window.localStorage.clear()
     this.order = new Order({})
     this.isConfirm = false
     this.isTNC = false
     this.myStepper.selectedIndex = 0
-    this.isProgress = true
     window.location.href = "https://comfortmovers.co.nz/#hero"
   }
 

@@ -3,19 +3,21 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule, MatNativeDateModule, MatSelectModule, MatSnackBarModule, MatStepperModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule, MatNativeDateModule, MatProgressSpinnerModule, MatSelectModule, MatSnackBarModule, MatSpinner, MatStepperModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GooglePlacesDirective } from './directives/google-places.directive';
 import { GoogleAddressComponent } from './components/google-address/google-address.component';
 import { SnackBarComponent } from './services/ux.service';
+import { ProcessingIndicatorComponent } from './components/processing-indicator/processing-indicator.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GooglePlacesDirective,
     GoogleAddressComponent,
-    SnackBarComponent
+    SnackBarComponent,
+    ProcessingIndicatorComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import { SnackBarComponent } from './services/ux.service';
     MatSelectModule,
     MatNativeDateModule,
     MatIconModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
   exports: [GooglePlacesDirective],
   providers: [],
