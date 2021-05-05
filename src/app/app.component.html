@@ -1,3 +1,4 @@
+<!-- <processing-indicator *ngIf="isProgress"></processing-indicator> -->
 <header id="header" class="fixed-top d-flex align-items-center">
   <div style="height: 100%;" class="container d-flex justify-content-between">
 
@@ -6,16 +7,15 @@
     </div>
 
     <nav id="navbar" class="navbar">
+      <a class="nav-link" href="https://comfortmovers.co.nz/#hero">Home</a>
       <ul>
-        <li><a class="nav-link" href="https://comfortmovers.co.nz/#hero">Home</a></li>
+        <!-- <li><a class="nav-link" href="https://comfortmovers.co.nz/#hero">Home</a></li> -->
         <li><a class="nav-link" href="https://comfortmovers.co.nz/#about">About</a></li>
         <li><a class="nav-link" href="https://comfortmovers.co.nz/#services">Services</a></li>
         <li><a class="nav-link" href="https://comfortmovers.co.nz/#review">Review</a></li>
         <li><a class="active">Instant Quote</a></li>
         <li><a class="nav-link" href="https://comfortmovers.co.nz/#contact">Contact</a></li>
       </ul>
-      <!-- <i class="bi bi-list mobile-nav-toggle"></i> -->
-      <a class="nav-link" href="https://comfortmovers.co.nz/#hero">Home</a>
     </nav>
   </div>
 </header>
@@ -340,7 +340,7 @@
 
         <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
           <mat-label>Phone number</mat-label>
-          <input matInput (change)="saveChanges()" [(ngModel)]="order.phone" type="number" maxlength="10" required>
+          <input matInput (keypress)="onlyNum($event)" (change)="saveChanges()" [(ngModel)]="order.phone" maxlength="10" required>
           <mat-icon matSuffix>phone</mat-icon>
           <mat-hint>Include area code</mat-hint>
         </mat-form-field>
@@ -359,7 +359,7 @@
 
         <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
           <mat-label>Contact number</mat-label>
-          <input (change)="saveChanges()" [(ngModel)]="order.where.phone" matInput type="number" maxlength="10"
+          <input (change)="saveChanges()" [(ngModel)]="order.where.phone" matInput (keypress)="onlyNum($event)" maxlength="10"
             required>
           <mat-icon matSuffix>phone</mat-icon>
           <mat-hint>Include area code</mat-hint>
@@ -379,7 +379,7 @@
 
         <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
           <mat-label>Contact number</mat-label>
-          <input (change)="saveChanges()" [(ngModel)]="order.to.phone" matInput type="number" maxlength="10" required>
+          <input (change)="saveChanges()" [(ngModel)]="order.to.phone" matInput (keypress)="onlyNum($event)" maxlength="10" required>
           <mat-icon matSuffix>phone</mat-icon>
           <mat-hint>Include area code</mat-hint>
         </mat-form-field>

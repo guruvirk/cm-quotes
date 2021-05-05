@@ -96,3 +96,18 @@ $cm-form-theme: mat-light-theme($cm-form-primary, $cm-form-accent, $cm-form-warn
 
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Raleway', sans-serif; }
+
+.red-snackbar {
+    background-color: #DC143C;
+    color: white;
+  }
+
+  .blue-snackbar {
+    background-color: blue;
+    color: white;
+  }
+
+  .green-snackbar {
+    background-color: green;
+    color: white;
+  }

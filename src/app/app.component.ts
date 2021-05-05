@@ -20,6 +20,7 @@ export class AppComponent {
   isTNC: boolean = false
   isConfirm: boolean = false
   minDate = new Date()
+  isProgress = true
 
   @ViewChild('stepper', null) private myStepper: MatStepper;
 
@@ -224,15 +225,17 @@ export class AppComponent {
       return
     }
     if (!this.isTNC) {
-      this.uxService.handleError("Please confirm above information")
+      this.uxService.handleError("Please accept Terms and Conditions")
       return
     }
-    this.uxService.showInfo("Submitted SuccessFully")
+    // this.uxService.showInfo("Submitted SuccessFully")
     window.localStorage.clear()
     this.order = new Order({})
     this.isConfirm = false
     this.isTNC = false
     this.myStepper.selectedIndex = 0
+    this.isProgress = true
+    window.location.href = "https://comfortmovers.co.nz/#hero"
   }
 
   secondBack(stepper: MatStepper) {
@@ -384,6 +387,12 @@ export class AppComponent {
 
   openTNC() {
     this.uxService.showInfo("TNC")
+  }
+
+  onlyNum(event) {
+    if (isNaN(event.key)) {
+      return false;
+    }
   }
 
 }

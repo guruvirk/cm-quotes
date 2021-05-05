@@ -33,8 +33,8 @@ export class UxService implements ErrorHandler,
 
   showInfo(message: string, title?: string): void {
     this.snackBar.open(message, null, {
-      duration: 3000,
-      panelClass: ['blue-snackbar']
+      duration: 6000,
+      panelClass: ['green-snackbar']
     });
   }
 
