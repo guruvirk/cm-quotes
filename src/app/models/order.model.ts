@@ -1,4 +1,5 @@
 export class Order {
+    code: string
     email: string
     phone: number
     date: Date
@@ -54,7 +55,7 @@ export class Order {
         if (!obj) {
             return;
         }
-
+        this.code = obj.code
         this.date = obj.date
         this.status = obj.status
         this.lastUpdate = obj.lastUpdate

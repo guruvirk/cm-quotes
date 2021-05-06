@@ -5,8 +5,10 @@
 export const environment = {
   production: false,
   error: {
-    "INVALID_DETAILS": "Invalid Details"
-  }
+    "INVALID_DETAILS": "Invalid Details",
+  },
+  // url: 'http://localhost:8080/api/create-order',
+  url: 'https://comfortcare.co.nz/cm/api/create-order'
 };
 
 /*

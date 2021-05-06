@@ -1,9 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatStepper } from '@angular/material';
 import * as moment from 'moment';
 import { Order } from './models';
 import { UxService } from './services/ux.service';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -156,7 +158,8 @@ export class AppComponent {
       }
     ]
 
-  constructor(private uxService: UxService) { }
+  constructor(private uxService: UxService,
+    private http: HttpClient,) { }
 
   ngOnInit() {
     if (new Date().getHours() > 13) {
@@ -228,14 +231,23 @@ export class AppComponent {
       this.uxService.handleError("Please accept Terms and Conditions")
       return
     }
-    this.uxService.showInfo("Submitted SuccessFully")
     this.isProgress = true
-    window.localStorage.clear()
-    this.order = new Order({})
-    this.isConfirm = false
-    this.isTNC = false
-    this.myStepper.selectedIndex = 0
-    window.location.href = "https://comfortmovers.co.nz/#hero"
+    this.http.post<any>(`${environment.url}`, this.order, { headers: { "x-tenant": "cm" } }).subscribe((responce) => {
+      if (responce.isSuccess) {
+        this.uxService.showInfo("Submitted SuccessFully")
+        window.localStorage.clear()
+        this.order = new Order({})
+        this.isConfirm = false
+        this.isTNC = false
+        window.location.href = `https://comfortmovers.co.nz/success?id=${responce.data.code}`
+      } else {
+        this.isProgress = false
+        this.uxService.showInfo("Unable to Submit " + responce.error)
+      }
+    }, err => {
+      this.isProgress = false
+      this.uxService.showInfo("Unable to Submit " + err.message)
+    })
   }
 
   secondBack(stepper: MatStepper) {

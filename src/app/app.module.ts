@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GooglePlacesDirective } from './directives/google-places.directive';
 import { GoogleAddressComponent } from './components/google-address/google-address.component';
 import { SnackBarComponent } from './services/ux.service';
+import { HttpClientModule } from '@angular/common/http';
 import { ProcessingIndicatorComponent } from './components/processing-indicator/processing-indicator.component';
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ProcessingIndicatorComponent } from './components/processing-indicator/
     MatNativeDateModule,
     MatIconModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    HttpClientModule
   ],
   exports: [GooglePlacesDirective],
   providers: [],
