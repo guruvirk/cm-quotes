@@ -38,7 +38,7 @@
       <ng-template matStepLabel>When and where</ng-template>
       <div class="formContainer">
         <div class="row">
-          <google-address class="col-md-9 col-sm-12" [line1]="order.where.line1" (fullAddress)="setWhereAddress($event)"
+          <google-address class="col-md-9 col-sm-12" [line1]="order.where.special" (fullAddress)="setWhereAddress($event)"
             [label]="'Where from'">
           </google-address>
           <mat-form-field class="col-md-3 col-sm-12" appearance="fill">
@@ -58,7 +58,7 @@
           <mat-checkbox color="primary" class="col-md-6 col-sm-12" [(ngModel)]="order.where.isElevator"
             [ngModelOptions]="{standalone: true}">
             An elevator is avaliable?</mat-checkbox>
-          <google-address class="col-md-9 col-sm-12" [line1]="order.to.line1" (fullAddress)="setToAddress($event)"
+          <google-address class="col-md-9 col-sm-12" [line1]="order.to.special" (fullAddress)="setToAddress($event)"
             [label]="'Where to'">
           </google-address>
           <mat-form-field class="col-md-3 col-sm-12" appearance="fill">

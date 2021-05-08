@@ -25,12 +25,6 @@ export class GoogleAddressComponent implements OnInit {
 
   setAddress(address) {
     this.zone.run(() => {
-      if (!address['street_number']) {
-        address['street_number'] = ''
-      }
-      if (!address['route']) {
-        address['route'] = ''
-      }
       this.fullAddress.emit(address);
     });
   }

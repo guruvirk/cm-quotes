@@ -169,12 +169,20 @@ export class AppComponent {
   }
 
   firstNext(stepper: MatStepper) {
-    if (!this.order.where.city || !this.order.where.state || !this.order.where.country || !this.order.where.pinCode) {
-      this.uxService.handleError("Please select correct Where From address")
+    if (!this.order.where.special) {
+      this.uxService.handleError("Please select Where From address")
       return
     }
-    if (!this.order.to.city || !this.order.to.state || !this.order.to.country || !this.order.to.pinCode) {
-      this.uxService.handleError("Please select correct Where to address")
+    if (!this.order.where.line1 && !this.order.where.line2) {
+      this.uxService.handleError("Invalid Where From Address: Street No or Street Name is required")
+      return
+    }
+    if (!this.order.to.special) {
+      this.uxService.handleError("Please select Where to address")
+      return
+    }
+    if (!this.order.to.line1 && !this.order.to.line2) {
+      this.uxService.handleError("Invalid Where to Address: Street No or Street Name is required")
       return
     }
     if (!this.order.where.floor) {
@@ -299,8 +307,10 @@ export class AppComponent {
   }
 
   setWhereAddress(address) {
-    this.order.where.line1 = address.formatted_address;
-    this.order.where.line2 = address['street_number'] + " " + address['route'];
+    this.order.where.special = address.formatted_address;
+    this.order.where.line1 = address['street_number'];
+    this.order.where.line2 = address['route'];
+    this.order.where.suburb = address['sublocality'];
     this.order.where.country = address.country;
     this.order.where.state = address['admin_area_l1'];
     this.order.where.city = address.locality;
@@ -309,8 +319,10 @@ export class AppComponent {
   }
 
   setToAddress(address) {
-    this.order.to.line1 = address.formatted_address;
-    this.order.to.line2 = address['street_number'] + " " + address['route'];
+    this.order.to.special = address.formatted_address;
+    this.order.to.line1 = address['street_number'];
+    this.order.to.line2 = address['route'];
+    this.order.to.suburb = address['sublocality'];
     this.order.to.country = address.country;
     this.order.to.state = address['admin_area_l1'];
     this.order.to.city = address.locality;

@@ -31,6 +31,8 @@ export class GooglePlacesDirective {
         location_obj['country'] = item['long_name']
       } else if (item['types'].indexOf("postal_code") > -1) {
         location_obj['postal_code'] = item['short_name']
+      } else if (item['types'].indexOf("sublocality") > -1) {
+        location_obj['sublocality'] = item['short_name']
       }
     }
 
@@ -40,7 +42,7 @@ export class GooglePlacesDirective {
   ngOnInit() {
     const options = {
       componentRestrictions: { country: "nz" },
-      fields: ["address_components", "geometry", "icon", "name"],
+      fields: ["address_components", "geometry", "icon", "name", "formatted_address"],
     };
     const autocomplete = new google.maps.places.Autocomplete(this.element, options);
     google.maps.event.addListener(autocomplete, 'place_changed', () => {
