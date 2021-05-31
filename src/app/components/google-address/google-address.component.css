@@ -1,3 +1,11 @@
+::ng-deep mat-label{
+  color: #2480fd !important;
+}
+
+::ng-deep .mat-form-field-underline {
+  background: #2480fd !important;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio:0) { 
     select,
     textarea,

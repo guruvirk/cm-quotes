@@ -16,6 +16,7 @@
         <li><a class="active">Instant Quote</a></li>
         <li><a class="nav-link" href="https://comfortmovers.co.nz/#contact">Contact</a></li>
       </ul>
+      <a href="tel:123-456-7890"><i class="bi bi-telephone-fill"></i></a>
     </nav>
   </div>
 </header>
@@ -38,8 +39,8 @@
       <ng-template matStepLabel>When and where</ng-template>
       <div class="formContainer">
         <div class="row">
-          <google-address class="col-md-9 col-sm-12" [line1]="order.where.special" (fullAddress)="setWhereAddress($event)"
-            [label]="'Where from'">
+          <google-address class="col-md-9 col-sm-12" [line1]="order.where.special"
+            (fullAddress)="setWhereAddress($event)" [label]="'Where from'">
           </google-address>
           <mat-form-field class="col-md-3 col-sm-12" appearance="fill">
             <mat-label>Choose Floor</mat-label>
@@ -94,9 +95,10 @@
           <mat-form-field class="col-md-3 col-sm-12" appearance="fill">
             <mat-label>Time</mat-label>
             <mat-select [(ngModel)]="order.timeslot" (selectionChange)="saveChanges()" required>
-              <mat-option value="8-9">8AM to 9AM</mat-option>
-              <mat-option value="12-2">12PM to 2PM</mat-option>
-              <mat-option value="2-4">2PM to 4PM</mat-option>
+              <mat-option value="6AM-7AM">6AM-7AM</mat-option>
+              <mat-option value="8AM to 9AM">8AM to 9AM</mat-option>
+              <mat-option value="12PM to 2PM">12PM to 2PM</mat-option>
+              <mat-option value="2PM to 4PM">2PM to 4PM</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -121,27 +123,28 @@
       <div class="row" style="text-align: left;">
         <section class="col-md-6">
           <span>
-            <mat-checkbox [checked]="order.size == 'family-home'" (change)="setSize($event, 'family-home')">
+            <mat-checkbox [checked]="order.size == 'Family Sized Homes'"
+              (change)="setSize($event, 'Family Sized Homes')">
               Family Sized Homes (3+ bedrooms)
             </mat-checkbox>
           </span>
           <span>
             <ul style="margin-left: 20px;">
               <li>
-                <mat-checkbox [disabled]="order.size != 'family-home'" [checked]="order.sizeDetails == '3-bedrooms'"
-                  (change)="setSizeDetails($event, '3-bedrooms')">
+                <mat-checkbox [disabled]="order.size != 'Family Sized Homes'"
+                  [checked]="order.sizeDetails == '3 bedrooms'" (change)="setSizeDetails($event, '3 bedrooms')">
                   3 bedrooms
                 </mat-checkbox>
               </li>
               <li>
-                <mat-checkbox [disabled]="order.size != 'family-home'" [checked]="order.sizeDetails == '4-bedrooms'"
-                  (change)="setSizeDetails($event, '4-bedrooms')">
+                <mat-checkbox [disabled]="order.size != 'Family Sized Homes'"
+                  [checked]="order.sizeDetails == '4 bedrooms'" (change)="setSizeDetails($event, '4 bedrooms')">
                   4 bedrooms
                 </mat-checkbox>
               </li>
               <li>
-                <mat-checkbox [disabled]="order.size != 'family-home'" [checked]="order.sizeDetails == '5-bedrooms'"
-                  (change)="setSizeDetails($event, '5-bedrooms')">
+                <mat-checkbox [disabled]="order.size != 'Family Sized Homes'"
+                  [checked]="order.sizeDetails == '5 bedrooms'" (change)="setSizeDetails($event, '5 bedrooms')">
                   5 bedrooms
                 </mat-checkbox>
               </li>
@@ -149,11 +152,11 @@
           </span>
         </section>
         <section class="col-md-6">
-          <mat-checkbox [checked]="order.size == 'apartment'" (change)="setSize($event, 'apartment')">
+          <mat-checkbox [checked]="order.size == 'Apartment'" (change)="setSize($event, 'Apartment')">
             Apartment / Small House Move (1-2 bedrooms)
           </mat-checkbox>
           <br>
-          <mat-checkbox [checked]="order.size == 'office'" (change)="setSize($event, 'office')">
+          <mat-checkbox [checked]="order.size == 'Office'" (change)="setSize($event, 'Office')">
             Office Move / Business Relocation
           </mat-checkbox>
         </section>
@@ -183,62 +186,62 @@
       </h4>
 
       <div class="row" style="text-align: left;">
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('upright-piano')"
-          (change)="setSpeciality($event, 'upright-piano')">Upright
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Upright Piano')"
+          (change)="setSpeciality($event, 'Upright Piano')">Upright
           Piano</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('outdoor-plants')"
-          (change)="setSpeciality($event, 'outdoor-plants')">
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Outdoor Plants')"
+          (change)="setSpeciality($event, 'Outdoor Plants')">
           Outdoor Plants
         </mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('treadmill')"
-          (change)="setSpeciality($event, 'treadmill')">
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Treadmill')"
+          (change)="setSpeciality($event, 'Treadmill')">
           Treadmill</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('baby-grand')"
-          (change)="setSpeciality($event, 'baby-grand')">Baby
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Baby Grand')"
+          (change)="setSpeciality($event, 'Baby Grand')">Baby
           Grand</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('heavy-planters')"
-          (change)="setSpeciality($event, 'heavy-planters')">
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Heavy Planters')"
+          (change)="setSpeciality($event, 'Heavy Planters')">
           Heavy Planters
         </mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('gym-sets')"
-          (change)="setSpeciality($event, 'gym-sets')">Gym
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Gym Sets')"
+          (change)="setSpeciality($event, 'Gym Sets')">Gym
           Sets</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('grand-piano')"
-          (change)="setSpeciality($event, 'grand-piano')">Grand
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Grand Piano')"
+          (change)="setSpeciality($event, 'Grand Piano')">Grand
           Piano</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('pool-table-standard')"
-          (change)="setSpeciality($event, 'pool-table-standard')">
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Pool Table Standard')"
+          (change)="setSpeciality($event, 'Pool Table Standard')">
           Pool Table Standard
         </mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('spa-pool-small')"
-          (change)="setSpeciality($event, 'spa-pool-small')">Spa
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Spa pool Small')"
+          (change)="setSpeciality($event, 'Spa pool Small')">Spa
           pool Small</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('large-bbq')"
-          (change)="setSpeciality($event, 'large-bbq')">
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Large BBQ')"
+          (change)="setSpeciality($event, 'Large BBQ')">
           Large BBQ</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('pool-table-slate')"
-          (change)="setSpeciality($event, 'pool-table-slate')">
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Pool Table Slate')"
+          (change)="setSpeciality($event, 'Pool Table Slate')">
           Pool Table Slate</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('spa-pool-large')"
-          (change)="setSpeciality($event, 'spa-pool-large')">Spa
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Spa pool Large')"
+          (change)="setSpeciality($event, 'Spa pool Large')">Spa
           pool Large</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('outdoor-furniture')"
-          (change)="setSpeciality($event, 'outdoor-furniture')">
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Outdoor Furniture')"
+          (change)="setSpeciality($event, 'Outdoor Furniture')">
           Outdoor Furniture</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('side-by-side-fridge')"
-          (change)="setSpeciality($event, 'side-by-side-fridge')">
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Side by Side Fridge')"
+          (change)="setSpeciality($event, 'Side by Side Fridge')">
           Side by Side Fridge</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('large-fish-tank')"
-          (change)="setSpeciality($event, 'large-fish-tank')">
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Large Fish Tank')"
+          (change)="setSpeciality($event, 'Large Fish Tank')">
           Large Fish Tank</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('trampoline')"
-          (change)="setSpeciality($event, 'trampoline')">
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Trampoline')"
+          (change)="setSpeciality($event, 'Trampoline')">
           Trampoline</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('garden-shed')"
-          (change)="setSpeciality($event, 'garden-shed')">
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Garden Shed')"
+          (change)="setSpeciality($event, 'Garden Shed')">
           Garden Shed</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('heavy-garage-items')"
-          (change)="setSpeciality($event, 'heavy-garage-items')">
+        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Heavy Garage Items')"
+          (change)="setSpeciality($event, 'Heavy Garage Items')">
           Heavy Garage Items</mat-checkbox>
       </div>
 
@@ -340,8 +343,10 @@
 
         <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
           <mat-label>Phone number</mat-label>
-          <input matInput (keypress)="onlyNum($event)" (change)="saveChanges()" [(ngModel)]="order.phone" maxlength="10" required>
-          <mat-icon matSuffix>phone</mat-icon>
+          <input matInput (keypress)="onlyNum($event)" (change)="saveChanges()" [(ngModel)]="order.phone" maxlength="10"
+            required>
+          <!-- <mat-icon matSuffix>phone</mat-icon> -->
+          <i matSuffix class="phoneIcon bi bi-telephone-fill"></i>
           <mat-hint>Include area code</mat-hint>
         </mat-form-field>
       </div>
@@ -359,16 +364,16 @@
 
         <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
           <mat-label>Contact number</mat-label>
-          <input (change)="saveChanges()" [(ngModel)]="order.where.phone" matInput (keypress)="onlyNum($event)" maxlength="10"
-            required>
-          <mat-icon matSuffix>phone</mat-icon>
+          <input (change)="saveChanges()" [(ngModel)]="order.where.phone" matInput (keypress)="onlyNum($event)"
+            maxlength="10" required>
+          <i matSuffix class="phoneIcon bi bi-telephone-fill"></i>
           <mat-hint>Include area code</mat-hint>
         </mat-form-field>
       </div>
       <br>
       <h4 style="text-align: left; width: 100%;">
         Delivery Contact Details <button (click)="copypickUp()" style="margin-left: 10px;" color="accent"
-          mat-stroked-button>Copy Pick-up Details</button>
+          mat-stroked-button><i class="bi bi-arrow-up"></i> Copy Pick-up Details</button>
       </h4>
 
       <div class="row">
@@ -379,8 +384,9 @@
 
         <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
           <mat-label>Contact number</mat-label>
-          <input (change)="saveChanges()" [(ngModel)]="order.to.phone" matInput (keypress)="onlyNum($event)" maxlength="10" required>
-          <mat-icon matSuffix>phone</mat-icon>
+          <input (change)="saveChanges()" [(ngModel)]="order.to.phone" matInput (keypress)="onlyNum($event)"
+            maxlength="10" required>
+          <i matSuffix class="phoneIcon bi bi-telephone-fill"></i>
           <mat-hint>Include area code</mat-hint>
         </mat-form-field>
       </div>
@@ -407,7 +413,10 @@
       <h4 style="text-align: left; width: 100%;">
         Terms and Conditions
       </h4>
-      <button mat-stroked-button color="primary" style="width: 100%;">View terms and conditions</button>
+      <div style="width: 100%; text-align: center; margin-bottom: 10px;">
+        <button mat-stroked-button color="primary"><i style="font-size: 20px;" class="bi bi-eye"></i> View terms and
+          conditions</button>
+      </div>
       <mat-checkbox color="primary" style="width: 100%;" [(ngModel)]="isTNC" [ngModelOptions]="{standalone: true}">
         I acceept terms and conditions.</mat-checkbox>
       <br>
@@ -460,8 +469,10 @@
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
               </p>
               <div class="footer-contacts">
-                <p><span>Tel:</span> +123 456 789</p>
-                <p><span>Email:</span> contact@example.com</p>
+                <p><a href="tel:123-456-7890"><span>Tel:</span><span style="color: #fff; font-weight: normal;"> +123
+                      456 789</span></a></p>
+                <p><a href="mailto:webmaster@example.com"><span>Email:</span><span
+                      style="color: #fff; font-weight: normal;"> contact@example.com</span></a></p>
                 <p><span>Working Hours:</span> 9am-5pm</p>
               </div>
             </div>

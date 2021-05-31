@@ -32,7 +32,7 @@ export class AppComponent {
     value: string
   }[] = [
       {
-        name: "ground",
+        name: "Ground",
         value: "Ground Floor"
       },
       {

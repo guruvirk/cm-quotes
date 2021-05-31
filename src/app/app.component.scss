@@ -32,6 +32,26 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
 
+::ng-deep mat-label{
+  color: #2480fd !important;
+}
+
+::ng-deep .mat-form-field-underline {
+  background: #2480fd !important;
+}
+
+::ng-deep .mat-select-arrow {
+  color: #2480fd !important;
+}
+
+::ng-deep .mat-form-field-ripple {
+  background: #2480fd !important;
+}
+
+::ng-deep .mat-form-field-underline::before {
+  background: #2480fd !important;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio:0) { 
   select,
   textarea,
