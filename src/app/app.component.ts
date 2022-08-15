@@ -6,6 +6,7 @@ import * as moment from 'moment';
 import { Order } from './models';
 import { UxService } from './services/ux.service';
 import { environment } from '../environments/environment';
+import { GoogleTagManagerService } from 'angular-google-tag-manager';
 
 @Component({
   selector: 'app-root',
@@ -159,6 +160,7 @@ export class AppComponent {
     ]
 
   constructor(private uxService: UxService,
+    private gtmService: GoogleTagManagerService,
     private http: HttpClient,) { }
 
   ngOnInit() {
@@ -207,10 +209,20 @@ export class AppComponent {
     }
     stepper.next();
     this.step = 1
+    const gtmTag = {
+      event: 'button-click',
+      data: 'second_page',
+    };
+    this.gtmService.pushTag(gtmTag);
     this.saveChanges()
   }
 
   thirdNext(stepper: MatStepper) {
+    const gtmTag = {
+      event: 'button-click',
+      data: 'final_submit',
+    };
+    this.gtmService.pushTag(gtmTag);
     if (!this.order.email) {
       this.uxService.handleError("Please enter Billing email")
       return
@@ -242,6 +254,11 @@ export class AppComponent {
     this.isProgress = true
     this.http.post<any>(`${environment.url}`, this.order, { headers: { "x-tenant": "cm" } }).subscribe((responce) => {
       if (responce.isSuccess) {
+        const gtmTag = {
+          event: 'button-click',
+          data: 'submitted-successfully',
+        };
+        this.gtmService.pushTag(gtmTag);
         this.uxService.showInfo("Submitted SuccessFully")
         window.localStorage.clear()
         this.order = new Order({})
@@ -303,10 +320,20 @@ export class AppComponent {
     }
     stepper.next();
     this.step = 2
+    const gtmTag = {
+      event: 'button-click',
+      data: 'third_page',
+    };
+    this.gtmService.pushTag(gtmTag);
     this.saveChanges()
   }
 
   setWhereAddress(address) {
+    const gtmTag = {
+      event: 'button-click',
+      data: 'where_address',
+    };
+    this.gtmService.pushTag(gtmTag);
     this.order.where.special = address.formatted_address;
     this.order.where.line1 = address['street_number'];
     this.order.where.line2 = address['route'];
@@ -319,6 +346,11 @@ export class AppComponent {
   }
 
   setToAddress(address) {
+    const gtmTag = {
+      event: 'button-click',
+      data: 'to_address',
+    };
+    this.gtmService.pushTag(gtmTag);
     this.order.to.special = address.formatted_address;
     this.order.to.line1 = address['street_number'];
     this.order.to.line2 = address['route'];

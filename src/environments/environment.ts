@@ -7,8 +7,8 @@ export const environment = {
   error: {
     "INVALID_DETAILS": "Invalid Details",
   },
-  url: 'http://localhost:8080/api/create-order',
-  // url: 'https://comfortcare.co.nz/cm/api/create-order'
+  // url: 'http://localhost:8080/api/create-order',
+  url: 'https://casadecor.online/cm/api/create-order'
 };
 
 /*

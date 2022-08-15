@@ -40,7 +40,9 @@ import { ProcessingIndicatorComponent } from './components/processing-indicator/
     HttpClientModule
   ],
   exports: [GooglePlacesDirective],
-  providers: [],
+  providers: [
+    {provide: 'googleTagManagerId', useValue: "GTM-MXMQ9T7"}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
