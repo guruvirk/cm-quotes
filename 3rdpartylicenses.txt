@@ -113,6 +113,9 @@ MIT
 @angular/router
 MIT
 
+angular-google-tag-manager
+MIT
+
 core-js
 MIT
 Copyright (c) 2014-2020 Denis Pushkarev
