@@ -210,8 +210,13 @@ export class AppComponent {
     stepper.next();
     this.step = 1
     const gtmTag = {
-      event: 'button-click',
-      data: 'second_page',
+      event: 'second_page',
+      data: {
+        where: this.order.where,
+        to: this.order.to,
+        date: this.order.date,
+        timeslot: this.order.timeslot
+      }
     };
     this.gtmService.pushTag(gtmTag);
     this.saveChanges()
@@ -329,11 +334,6 @@ export class AppComponent {
   }
 
   setWhereAddress(address) {
-    const gtmTag = {
-      event: 'button-click',
-      data: 'where_address',
-    };
-    this.gtmService.pushTag(gtmTag);
     this.order.where.special = address.formatted_address;
     this.order.where.line1 = address['street_number'];
     this.order.where.line2 = address['route'];
@@ -342,15 +342,20 @@ export class AppComponent {
     this.order.where.state = address['admin_area_l1'];
     this.order.where.city = address.locality;
     this.order.where.pinCode = address['postal_code'];
+    if (this.order.to && this.order.to.special) {
+      const gtmTag = {
+        event: 'where_to_address_done',
+        data: {
+          where: this.order.where,
+          to: this.order.to
+        }
+      }
+      this.gtmService.pushTag(gtmTag);
+    }
     this.saveChanges()
   }
 
   setToAddress(address) {
-    const gtmTag = {
-      event: 'button-click',
-      data: 'to_address',
-    };
-    this.gtmService.pushTag(gtmTag);
     this.order.to.special = address.formatted_address;
     this.order.to.line1 = address['street_number'];
     this.order.to.line2 = address['route'];
@@ -359,6 +364,16 @@ export class AppComponent {
     this.order.to.state = address['admin_area_l1'];
     this.order.to.city = address.locality;
     this.order.to.pinCode = address['postal_code'];
+    if (this.order.where && this.order.where.special) {
+      const gtmTag = {
+        event: 'where_to_address_done',
+        data: {
+          where: this.order.where,
+          to: this.order.to
+        }
+      }
+      this.gtmService.pushTag(gtmTag);
+    }
     this.saveChanges()
   }
 
