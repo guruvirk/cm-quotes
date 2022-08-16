@@ -211,23 +211,13 @@ export class AppComponent {
     this.step = 1
     const gtmTag = {
       event: 'second_page',
-      data: {
-        where: this.order.where,
-        to: this.order.to,
-        date: this.order.date,
-        timeslot: this.order.timeslot
-      }
+      data: this.order
     };
     this.gtmService.pushTag(gtmTag);
     this.saveChanges()
   }
 
   thirdNext(stepper: MatStepper) {
-    const gtmTag = {
-      event: 'button-click',
-      data: 'final_submit',
-    };
-    this.gtmService.pushTag(gtmTag);
     if (!this.order.email) {
       this.uxService.handleError("Please enter Billing email")
       return
@@ -260,8 +250,8 @@ export class AppComponent {
     this.http.post<any>(`${environment.url}`, this.order, { headers: { "x-tenant": "cm" } }).subscribe((responce) => {
       if (responce.isSuccess) {
         const gtmTag = {
-          event: 'button-click',
-          data: 'submitted-successfully',
+          event: 'submitted_successfully',
+          data: responce.data
         };
         this.gtmService.pushTag(gtmTag);
         this.uxService.showInfo("Submitted SuccessFully")
@@ -326,8 +316,8 @@ export class AppComponent {
     stepper.next();
     this.step = 2
     const gtmTag = {
-      event: 'button-click',
-      data: 'third_page',
+      event: 'third_page',
+      data: this.order
     };
     this.gtmService.pushTag(gtmTag);
     this.saveChanges()
