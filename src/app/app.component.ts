@@ -20,8 +20,6 @@ export class AppComponent {
   thirdFormGroup: FormGroup;
   title = 'Comfort Movers';
   order: Order = new Order({})
-  isTNC: boolean = false
-  isConfirm: boolean = false
   minDate = new Date()
   isProgress = false
 
@@ -203,10 +201,6 @@ export class AppComponent {
       this.uxService.handleError("Please select correct Pick Up Time")
       return
     }
-    if (!this.isConfirm) {
-      this.uxService.handleError("Please confirm above information")
-      return
-    }
     stepper.next();
     this.step = 1
     const gtmTag = {
@@ -226,26 +220,6 @@ export class AppComponent {
       this.uxService.handleError("Please enter Billing phone")
       return
     }
-    if (!this.order.where.name) {
-      this.uxService.handleError("Please enter Pick-up Contact Details Full Name")
-      return
-    }
-    if (!this.order.where.phone) {
-      this.uxService.handleError("Please enter Pick-up Contact Details Contact number")
-      return
-    }
-    if (!this.order.to.name) {
-      this.uxService.handleError("Please enter Delivery Contact Details Full Name")
-      return
-    }
-    if (!this.order.to.phone) {
-      this.uxService.handleError("Please enter Delivery Contact Details Contact number")
-      return
-    }
-    if (!this.isTNC) {
-      this.uxService.handleError("Please accept Terms and Conditions")
-      return
-    }
     this.isProgress = true
     this.http.post<any>(`${environment.url}`, this.order, { headers: { "x-tenant": "cm" } }).subscribe((responce) => {
       if (responce.isSuccess) {
@@ -257,8 +231,6 @@ export class AppComponent {
         this.uxService.showInfo("Submitted SuccessFully")
         window.localStorage.clear()
         this.order = new Order({})
-        this.isConfirm = false
-        this.isTNC = false
         window.location.href = `https://comfortmovers.co.nz/success?id=${responce.data.code}`
       } else {
         this.isProgress = false
@@ -279,12 +251,6 @@ export class AppComponent {
   thirdBack(stepper: MatStepper) {
     stepper.previous();
     this.step = 1
-    this.saveChanges()
-  }
-
-  copypickUp() {
-    this.order.to.name = this.order.where.name
-    this.order.to.phone = this.order.where.phone
     this.saveChanges()
   }
 
@@ -428,9 +394,6 @@ export class AppComponent {
     }
     let step = window.localStorage.getItem('step')
     if (Number(step) >= 0) {
-      if (Number(step) > 0) {
-        this.isConfirm = true
-      }
       this.step = Number(step)
       this.myStepper.selectedIndex = Number(step)
     }
@@ -439,15 +402,6 @@ export class AppComponent {
   moveOnly(input: boolean) {
     this.order.isMoveOnly = input
     this.saveChanges()
-  }
-
-  paymentChange(input: boolean) {
-    this.order.paymentAtDelivery = input
-    this.saveChanges()
-  }
-
-  openTNC() {
-    this.uxService.showInfo("TNC")
   }
 
   onlyNum(event) {

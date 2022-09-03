@@ -32,11 +32,10 @@
       <mat-icon>check</mat-icon>
     </ng-template>
     <mat-step [stepControl]="firstFormGroup" [editable]="true">
-      <h6 style="margin-top: 10px;">
-        Please let us know the pick-up and delivery address, what time you would like us to come and whether you would
-        like
-        to book our one man or two man service.
-      </h6>
+      <h5 style="margin-top: 20px;">
+        Please let us know the pick-up and delivery address, what time you would like us to come.
+      </h5>
+      <br>
       <ng-template matStepLabel>When and where</ng-template>
       <div class="formContainer">
         <div class="row">
@@ -81,10 +80,6 @@
             An elevator is avaliable?</mat-checkbox>
         </div>
         <br>
-        <mat-checkbox color="primary" style="width: 100%;" [(ngModel)]="isConfirm"
-          [ngModelOptions]="{standalone: true}">
-          Confirm the above information is correct.</mat-checkbox>
-        <br>
         <div class="row">
           <mat-form-field class="col-md-9 col-sm-12" appearance="fill">
             <mat-label>Pick Up Date</mat-label>
@@ -110,11 +105,12 @@
       </div>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup" [editable]="true">
-      <h6 style="margin-top: 10px;">
+      <h5 style="margin-top: 20px;">
         Please let us know the pick-up and delivery address, what time you would like us to come and whether you would
         like
         to book our one man or two man service.
-      </h6>
+      </h5>
+      <br>
       <ng-template matStepLabel>House Move Details</ng-template>
 
       <h4 style="text-align: left; width: 100%;">
@@ -325,7 +321,7 @@
       </div>
     </mat-step>
     <mat-step [stepControl]="thirdFormGroup" [editable]="true">
-      <h5 style="margin-top: 10px;">
+      <h5 style="margin-top: 20px;">
         We just need a little more information to make sure things run smoothly so that we can provide an accurate
         quote
         as quickly as possible.
@@ -351,46 +347,6 @@
           <mat-hint>Include area code</mat-hint>
         </mat-form-field>
       </div>
-
-      <br>
-      <h4 style="text-align: left; width: 100%;">
-        Pick-up Contact Details
-      </h4>
-
-      <div class="row">
-        <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
-          <mat-label>Full Name</mat-label>
-          <input (change)="saveChanges()" [(ngModel)]="order.where.name" matInput required>
-        </mat-form-field>
-
-        <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
-          <mat-label>Contact number</mat-label>
-          <input (change)="saveChanges()" [(ngModel)]="order.where.phone" matInput (keypress)="onlyNum($event)"
-            maxlength="10" required>
-          <i matSuffix class="phoneIcon bi bi-telephone-fill"></i>
-          <mat-hint>Include area code</mat-hint>
-        </mat-form-field>
-      </div>
-      <br>
-      <h4 style="text-align: left; width: 100%;">
-        Delivery Contact Details <button (click)="copypickUp()" style="margin-left: 10px;" color="accent"
-          mat-stroked-button><i class="bi bi-arrow-up"></i> Copy Pick-up Details</button>
-      </h4>
-
-      <div class="row">
-        <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
-          <mat-label>Full Name</mat-label>
-          <input (change)="saveChanges()" [(ngModel)]="order.to.name" matInput required>
-        </mat-form-field>
-
-        <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
-          <mat-label>Contact number</mat-label>
-          <input (change)="saveChanges()" [(ngModel)]="order.to.phone" matInput (keypress)="onlyNum($event)"
-            maxlength="10" required>
-          <i matSuffix class="phoneIcon bi bi-telephone-fill"></i>
-          <mat-hint>Include area code</mat-hint>
-        </mat-form-field>
-      </div>
       <br>
       <mat-form-field style="width: 100%" appearance="fill">
         <mat-label>Additional Notes</mat-label>
@@ -398,28 +354,6 @@
           placeholder="Please add any additional information that will help us do a great job for you or that we should know about. If any single item is above 50kg it should be noted here."
           matInput></textarea>
       </mat-form-field>
-      <br>
-      <h4 style="text-align: left; width: 100%;">
-        Payment
-      </h4>
-      <div class="row" style="text-align: left;">
-        <mat-checkbox class="col-md-6 col-sm-12" [checked]="!order.paymentAtDelivery" (change)="paymentChange(false)">
-          Payment
-          will be made at the pick up address</mat-checkbox>
-        <mat-checkbox class="col-md-6 col-sm-12" [checked]="order.paymentAtDelivery" (change)="paymentChange(true)">
-          Payment will be made on delivery
-        </mat-checkbox>
-      </div>
-      <br>
-      <h4 style="text-align: left; width: 100%;">
-        Terms and Conditions
-      </h4>
-      <div style="width: 100%; text-align: center; margin-bottom: 10px;">
-        <button mat-stroked-button color="primary"><i style="font-size: 20px;" class="bi bi-eye"></i> View terms and
-          conditions</button>
-      </div>
-      <mat-checkbox color="primary" style="width: 100%;" [(ngModel)]="isTNC" [ngModelOptions]="{standalone: true}">
-        I acceept terms and conditions.</mat-checkbox>
       <br>
       <div>
         <br>

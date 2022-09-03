@@ -18,9 +18,7 @@ export class Order {
         isParkingAway: boolean,
         isElevator: boolean,
         vehicleAccess: string,
-        accessToHome: string,
-        name: string,
-        phone: number
+        accessToHome: string
     }
     to: {
         special: string,
@@ -36,9 +34,7 @@ export class Order {
         isParkingAway: boolean,
         isElevator: boolean,
         vehicleAccess: string,
-        accessToHome: string,
-        name: string,
-        phone: number
+        accessToHome: string
     }
     size: string
     sizeDetails: string
@@ -47,7 +43,6 @@ export class Order {
     special: string[]
     deliveryInfo: string
     additionalInfo: string
-    paymentAtDelivery: boolean
     status: string
     lastUpdate: Date
 
@@ -68,7 +63,6 @@ export class Order {
         this.isCleaning = obj.isCleaning || false
         this.deliveryInfo = obj.deliveryInfo
         this.additionalInfo = obj.additionalInfo
-        this.paymentAtDelivery = obj.paymentAtDelivery || false
         this.special = []
         this.where = {
             special: null,
@@ -84,9 +78,7 @@ export class Order {
             isParkingAway: null,
             isElevator: null,
             vehicleAccess: null,
-            accessToHome: null,
-            name: null,
-            phone: null
+            accessToHome: null
         }
         this.to = {
             special: null,
@@ -102,9 +94,7 @@ export class Order {
             isParkingAway: null,
             isElevator: null,
             vehicleAccess: null,
-            accessToHome: null,
-            name: null,
-            phone: null
+            accessToHome: null
         }
 
         if (obj.special && obj.special.length) {
@@ -128,9 +118,7 @@ export class Order {
                 isParkingAway: obj.where.isParkingAway,
                 isElevator: obj.where.isElevator,
                 vehicleAccess: obj.where.vehicleAccess,
-                accessToHome: obj.where.accessToHome,
-                name: obj.where.name,
-                phone: obj.where.phone
+                accessToHome: obj.where.accessToHome
             }
         }
 
@@ -149,9 +137,7 @@ export class Order {
                 isParkingAway: obj.to.isParkingAway,
                 isElevator: obj.to.isElevator,
                 vehicleAccess: obj.to.vehicleAccess,
-                accessToHome: obj.to.accessToHome,
-                name: obj.to.name,
-                phone: obj.to.phone
+                accessToHome: obj.to.accessToHome
             }
         }
 

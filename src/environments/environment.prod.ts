@@ -3,5 +3,5 @@ export const environment = {
   error: {
     "INVALID_DETAILS": "Invalid Details"
   },
-  url: 'https://casadecor.online/cm/api/create-order'
+  url: 'https://comfortcare.co.nz/cm/api/create-order'
 };
