@@ -350,7 +350,7 @@ div#preloader {
     font-size: 18px;
     line-height: 0;
     margin-left: 5px;
-    color: #2480fd;
+    color: white;
 }
 
 .navbar a:hover, .navbar .active, .navbar li:hover > a {
@@ -2437,6 +2437,9 @@ span.email-notes {
   }
   li.threaded-comments {
     margin-left: 0;
+  }
+  #header .logo .logoImage {
+    width: 100px;
   }
 }
 
