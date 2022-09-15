@@ -11,10 +11,10 @@ export class GoogleAddressComponent implements OnInit {
   fullAddress: EventEmitter<any> = new EventEmitter()
 
   @Input()
-  label: string;
+  label?: string;
 
   @Input()
-  line1: string;
+  line1?: string;
 
   constructor(
     private zone: NgZone,
@@ -23,7 +23,7 @@ export class GoogleAddressComponent implements OnInit {
   ngOnInit() {
   }
 
-  setAddress(address) {
+  setAddress(address: any) {
     this.zone.run(() => {
       this.fullAddress.emit(address);
     });

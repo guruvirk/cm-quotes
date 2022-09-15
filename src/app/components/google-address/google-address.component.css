@@ -1,15 +1,20 @@
 ::ng-deep mat-label{
-  color: #2480fd !important;
+  color: white !important;
 }
 
 ::ng-deep .mat-form-field-underline {
-  background: #2480fd !important;
+  background: white !important;
 }
 
-@media screen and (-webkit-min-device-pixel-ratio:0) { 
-    select,
-    textarea,
-    input {
-      font-size: 16px;
-    }
+input {
+  color: white !important;
+  caret-color: white !important;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  select,
+  textarea,
+  input {
+    font-size: 16px;
   }
+}

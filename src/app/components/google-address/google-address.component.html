@@ -1,5 +1,5 @@
-<mat-form-field style="width: 100%;">
+<mat-form-field appearance="fill" style="width: 100%;">
     <mat-label>{{label}}</mat-label>
-    <input matInput type="text" placeholder="Ex. 1 Main St, Auckland, NZ" google-place [(ngModel)]="line1"
+    <input style="color: white;" matInput type="text" placeholder="Ex. 1 Main St, Auckland, NZ" google-place [(ngModel)]="line1"
         (onSelect)="setAddress($event)" required>
 </mat-form-field>

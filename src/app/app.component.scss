@@ -1,17 +1,24 @@
 .mat-stepper-horizontal {
-    margin-top: 8px;
+  margin-top: 8px;
 }
-  
+
 .mat-form-field {
-    margin-top: 16px;
+  margin-top: 5px;
 }
 
 .heading {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .mainContainer {
-  margin-top: 90px;text-align: center;
+  text-align: center;
+  background-repeat: round;
+}
+
+.rowContainer {
+  padding-top: 80px;
+  background: rgba(0, 0, 0, 0.6);
+  margin: 0;
 }
 
 .formContainer {
@@ -19,7 +26,11 @@
   margin-left: 15%;
 }
 
-::ng-deep .mat-vertical-stepper-header{
+.carousel-div-item {
+  text-align: left;
+}
+
+::ng-deep .mat-vertical-stepper-header {
   pointer-events: none !important;
 }
 
@@ -27,48 +38,188 @@
   padding: 0 24px 24px 10px !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: #2480fd !important;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: white !important;
   font-weight: bold;
 }
 
-::ng-deep mat-label{
-  color: #2480fd !important;
-}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
 
-::ng-deep .mat-form-field-underline {
-  background: #2480fd !important;
-}
-
-::ng-deep .mat-select-arrow {
-  color: #2480fd !important;
-}
-
-::ng-deep .mat-form-field-ripple {
-  background: #2480fd !important;
-}
-
-::ng-deep .mat-form-field-underline::before {
-  background: #2480fd !important;
-}
-
-@media screen and (-webkit-min-device-pixel-ratio:0) { 
   select,
+  mat-select,
   textarea,
   input {
     font-size: 16px;
   }
 }
 
+.font-carousel {
+  font-weight: normal !important;
+}
+
+::ng-deep mat-label {
+  color: white !important;
+}
+
+::ng-deep .mat-form-field-underline {
+  background: white !important;
+}
+
+::ng-deep .mat-select-arrow {
+  color: white !important;
+}
+
+::ng-deep .mat-form-field-ripple {
+  background: white !important;
+}
+
+::ng-deep .mat-form-field-underline::before {
+  background: white !important;
+}
+
+::ng-deep .mat-form-field-label {
+  @media (max-width: 991px) {
+    color: white !important;
+    font-size: 13px !important;
+  }
+
+  color: white !important;
+  font-size: 15px !important;
+}
+
+.mainContainer input {
+  color: white !important;
+  caret-color: white !important;
+}
+
+textarea {
+  color: white !important;
+  caret-color: white !important;
+}
+
+.mat-select-value {
+  color: white !important;
+}
+
+::ng-deep .mat-select-min-line {
+  color: white !important;
+}
+
+textarea {
+  color: white !important;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white !important;
+  opacity: .8;
+  /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: white !important;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: white !important;
+}
+
+::ng-deep .carousel-control-prev {
+  display: none;
+}
+
+::ng-deep .carousel-control-next {
+  display: none;
+}
+
+::ng-deep .carousel-indicators {
+  @media (max-width: 991px) {
+    justify-content: center !important;
+  }
+
+  justify-content: left !important;
+}
+
+::ng-deep .carousel-inner {
+  @media (max-width: 991px) {
+    overflow: visible !important;
+  }
+
+  overflow: hidden !important;
+}
+
+.myCarousel {
+  margin-top: 100px;
+}
+
+.get-quotes-div {
+  padding-top: 20px;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 70px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+}
+
+.keywords {
+  font-size: 2px;
+  line-height: 1;
+  color: black;
+}
+
+.submit-button {
+  margin-top: 20px;
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
 @media (max-width: 991px) {
+
+  .carousel-div-item {
+    text-align: center;
+  }
+
+  .mainContainer {
+    text-align: center;
+    background-repeat: inherit;
+  }
+
+  .rowContainer {
+    padding-top: 10px;
+  }
+
   .formContainer {
     width: 100%;
     margin-left: 0;
   }
+
+  .font-carousel {
+    font-weight: bold !important;
+  }
+
+  .carousel-div-item h4 {
+    font-size: 16px !important;
+  }
+
+  .carousel-div-item h3 {
+    font-size: 18px !important;
+    font-weight: normal !important;
+  }
+
   h1 {
     font-size: 28px;
   }
-  
+
   h2 {
     font-size: 25px;
   }
@@ -88,7 +239,7 @@ h1, h2, h3, h4, h5, h6 {
   h6 {
     font-size: 13px;
   }
-  
+
   p {
     font-size: 11px;
   }
@@ -96,4 +247,38 @@ h1, h2, h3, h4, h5, h6 {
   .mainContainer {
     font-size: 11px;
   }
+
+  .get-quotes-div {
+    border: none;
+  }
+
+  .myCarousel {
+    margin-top: 130px;
+  }
+
+  .call-button {
+    position: fixed;
+    top: auto;
+    left: auto;
+    bottom: 30px;
+    right: 15px;
+    height: 60px;
+    width: 60px;
+  }
+
+  .call-button-icon {
+    font-size: 20px;
+    line-height: 1.3;
+    margin-left: 5px;
+    color: white;
+  }
+
+  .submit-button {
+    margin-top: 20px;
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    font-size: 18px;
+  }
+
 }

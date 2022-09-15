@@ -165,7 +165,7 @@
   /**
    * Hero carousel indicators
    */
-  let heroCarouselIndicators = select("#hero-carousel-indicators")
+    let heroCarouselIndicators = select("#hero-carousel-indicators")
   let heroCarouselItems = select('#heroCarousel .carousel-item', true)
 
   heroCarouselItems.forEach((item, index) => {

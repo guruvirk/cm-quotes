@@ -1,5 +1,5 @@
 import { Component, ErrorHandler, Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs';
 import { Location } from '@angular/common';
 import { IContextMenuHandler } from './models/context-menu-handler.interface';
@@ -25,14 +25,14 @@ export class UxService implements ErrorHandler,
   handleError(error: any): void {
     const err = error instanceof Error ? error.message : error;
     this._errors.next(err);
-    this.snackBar.open(this.getError(err), null, {
+    this.snackBar.open(this.getError(err), undefined, {
       duration: 3000,
       panelClass: ['red-snackbar']
     });
   }
 
   showInfo(message: string, title?: string): void {
-    this.snackBar.open(message, null, {
+    this.snackBar.open(message, undefined, {
       duration: 6000,
       panelClass: ['green-snackbar']
     });
@@ -46,10 +46,7 @@ export class UxService implements ErrorHandler,
     });
   }
 
-  getError(err): string {
-    if (environment.error[err]) {
-      return environment.error[err]
-    }
+  getError(err: any): string {
     return err
   }
 

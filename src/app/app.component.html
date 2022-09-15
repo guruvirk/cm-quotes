@@ -22,349 +22,80 @@
   </div>
 </header>
 
-<div class="mainContainer">
+<div class="mainContainer" style="background-image: url(assets/img/picture.png);">
+  <div class="row rowContainer">
+    <div class="col-md-6 col-sm-12">
 
-  <h2 class="heading">Moving & Delivery Online Quote Wizard
-  </h2>
+      <ngb-carousel class="myCarousel">
+        <ng-template ngbSlide>
+          <img style="opacity: 0;" src="../assets/img/hero-carousel/1.jpg" alt="Delhi Metro">
+          <div class="carousel-caption carousel-div-item">
+            <h4 style="color: white !important;" class="font-carousel" >Service with comfort</h4>
+            <h3 style="color: white !important;" class="font-carousel">We are happy to move anything
+              from a single item, right through to
+              fully furnished homes, offices or
+              apartments</h3>
+          </div>
+        </ng-template>
+      </ngb-carousel>
 
-  <mat-vertical-stepper [linear]="false" #stepper>
-    <ng-template matStepperIcon="edit">
-      <mat-icon>check</mat-icon>
-    </ng-template>
-    <mat-step [stepControl]="firstFormGroup" [editable]="true">
-      <h5 style="margin-top: 20px;">
-        Please let us know the pick-up and delivery address, what time you would like us to come.
-      </h5>
-      <br>
-      <ng-template matStepLabel>When and where</ng-template>
-      <div class="formContainer">
-        <div class="row">
-          <google-address class="col-md-9 col-sm-12" [line1]="order.where.special"
-            (fullAddress)="setWhereAddress($event)" [label]="'Where from'">
-          </google-address>
-          <mat-form-field class="col-md-3 col-sm-12" appearance="fill">
-            <mat-label>Choose Floor</mat-label>
-            <mat-select [(ngModel)]="order.where.floor" (selectionChange)="saveChanges()" required>
-              <ng-container *ngFor="let floor of floors">
-                <mat-option [value]="floor.name">{{floor.value}}</mat-option>
-              </ng-container>
-            </mat-select>
-          </mat-form-field>
-          <mat-checkbox color="primary" class="col-md-6 col-sm-12" [(ngModel)]="order.where.isParkingAway"
-            [ngModelOptions]="{standalone: true}">Parking
-            is
-            more
-            than 10m away?
-          </mat-checkbox>
-          <mat-checkbox color="primary" class="col-md-6 col-sm-12" [(ngModel)]="order.where.isElevator"
-            [ngModelOptions]="{standalone: true}">
-            An elevator is avaliable?</mat-checkbox>
-          <google-address class="col-md-9 col-sm-12" [line1]="order.to.special" (fullAddress)="setToAddress($event)"
-            [label]="'Where to'">
-          </google-address>
-          <mat-form-field class="col-md-3 col-sm-12" appearance="fill">
-            <mat-label>Choose Floor</mat-label>
-            <mat-select [(ngModel)]="order.to.floor" (selectionChange)="saveChanges()" required>
-              <ng-container *ngFor="let floor of floors">
-                <mat-option [value]="floor.name">{{floor.value}}</mat-option>
-              </ng-container>
-            </mat-select>
-          </mat-form-field>
-          <mat-checkbox color="primary" class="col-md-6 col-sm-12" [(ngModel)]="order.to.isParkingAway"
-            [ngModelOptions]="{standalone: true}">Parking is
-            more
-            than 10m away?
-          </mat-checkbox>
-          <mat-checkbox color="primary" class="col-md-6 col-sm-12" [(ngModel)]="order.to.isElevator"
-            [ngModelOptions]="{standalone: true}">
-            An elevator is avaliable?</mat-checkbox>
-        </div>
-        <br>
-        <div class="row">
-          <mat-form-field class="col-md-9 col-sm-12" appearance="fill">
-            <mat-label>Pick Up Date</mat-label>
-            <input (change)="saveChanges()" [(ngModel)]="order.date" readonly matInput [matDatepicker]="picker"
-              [min]="minDate" required>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-          <mat-form-field class="col-md-3 col-sm-12" appearance="fill">
-            <mat-label>Time</mat-label>
-            <mat-select [(ngModel)]="order.timeslot" (selectionChange)="saveChanges()" required>
-              <mat-option value="6AM-7AM">6AM-7AM</mat-option>
-              <mat-option value="8AM to 9AM">8AM to 9AM</mat-option>
-              <mat-option value="12PM to 2PM">12PM to 2PM</mat-option>
-              <mat-option value="2PM to 4PM">2PM to 4PM</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <br>
-        <div>
-          <button color="primary" mat-raised-button (click)="firstNext(stepper)">Next</button>
-        </div>
-      </div>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup" [editable]="true">
-      <h5 style="margin-top: 20px;">
-        Please let us know the pick-up and delivery address, what time you would like us to come and whether you would
-        like
-        to book our one man or two man service.
-      </h5>
-      <br>
-      <ng-template matStepLabel>House Move Details</ng-template>
-
-      <h4 style="text-align: left; width: 100%;">
-        Size of move
-      </h4>
-
-      <div class="row" style="text-align: left;">
-        <section class="col-md-6">
-          <span>
-            <mat-checkbox [checked]="order.size == 'Family Sized Homes'"
-              (change)="setSize($event, 'Family Sized Homes')">
-              Family Sized Homes (3+ bedrooms)
-            </mat-checkbox>
-          </span>
-          <span>
-            <ul style="margin-left: 20px;">
-              <li>
-                <mat-checkbox [disabled]="order.size != 'Family Sized Homes'"
-                  [checked]="order.sizeDetails == '3 bedrooms'" (change)="setSizeDetails($event, '3 bedrooms')">
-                  3 bedrooms
-                </mat-checkbox>
-              </li>
-              <li>
-                <mat-checkbox [disabled]="order.size != 'Family Sized Homes'"
-                  [checked]="order.sizeDetails == '4 bedrooms'" (change)="setSizeDetails($event, '4 bedrooms')">
-                  4 bedrooms
-                </mat-checkbox>
-              </li>
-              <li>
-                <mat-checkbox [disabled]="order.size != 'Family Sized Homes'"
-                  [checked]="order.sizeDetails == '5 bedrooms'" (change)="setSizeDetails($event, '5 bedrooms')">
-                  5 bedrooms
-                </mat-checkbox>
-              </li>
-            </ul>
-          </span>
-        </section>
-        <section class="col-md-6">
-          <mat-checkbox [checked]="order.size == 'Apartment'" (change)="setSize($event, 'Apartment')">
-            Apartment / Small House Move (1-2 bedrooms)
-          </mat-checkbox>
-          <br>
-          <mat-checkbox [checked]="order.size == 'Office'" (change)="setSize($event, 'Office')">
-            Office Move / Business Relocation
-          </mat-checkbox>
-        </section>
-      </div>
-
-      <br>
-
-      <h4 style="text-align: left; width: 100%;">
-        What services do you require
-      </h4>
-
-      <div class="row" style="text-align: left;">
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="!order.isMoveOnly" (change)="moveOnly(false)">Full
-          Pack
-          and Move Services</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="order.isMoveOnly" (change)="moveOnly(true)">
-          Move Only (no packing req.)
-        </mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [(ngModel)]="order.isCleaning" [ngModelOptions]="{standalone: true}">
-          Cleaning</mat-checkbox>
-      </div>
-
-      <br>
-
-      <h4 style="text-align: left; width: 100%;">
-        Special or additional items
-      </h4>
-
-      <div class="row" style="text-align: left;">
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Upright Piano')"
-          (change)="setSpeciality($event, 'Upright Piano')">Upright
-          Piano</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Outdoor Plants')"
-          (change)="setSpeciality($event, 'Outdoor Plants')">
-          Outdoor Plants
-        </mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Treadmill')"
-          (change)="setSpeciality($event, 'Treadmill')">
-          Treadmill</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Baby Grand')"
-          (change)="setSpeciality($event, 'Baby Grand')">Baby
-          Grand</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Heavy Planters')"
-          (change)="setSpeciality($event, 'Heavy Planters')">
-          Heavy Planters
-        </mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Gym Sets')"
-          (change)="setSpeciality($event, 'Gym Sets')">Gym
-          Sets</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Grand Piano')"
-          (change)="setSpeciality($event, 'Grand Piano')">Grand
-          Piano</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Pool Table Standard')"
-          (change)="setSpeciality($event, 'Pool Table Standard')">
-          Pool Table Standard
-        </mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Spa pool Small')"
-          (change)="setSpeciality($event, 'Spa pool Small')">Spa
-          pool Small</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Large BBQ')"
-          (change)="setSpeciality($event, 'Large BBQ')">
-          Large BBQ</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Pool Table Slate')"
-          (change)="setSpeciality($event, 'Pool Table Slate')">
-          Pool Table Slate</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Spa pool Large')"
-          (change)="setSpeciality($event, 'Spa pool Large')">Spa
-          pool Large</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Outdoor Furniture')"
-          (change)="setSpeciality($event, 'Outdoor Furniture')">
-          Outdoor Furniture</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Side by Side Fridge')"
-          (change)="setSpeciality($event, 'Side by Side Fridge')">
-          Side by Side Fridge</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Large Fish Tank')"
-          (change)="setSpeciality($event, 'Large Fish Tank')">
-          Large Fish Tank</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Trampoline')"
-          (change)="setSpeciality($event, 'Trampoline')">
-          Trampoline</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Garden Shed')"
-          (change)="setSpeciality($event, 'Garden Shed')">
-          Garden Shed</mat-checkbox>
-        <mat-checkbox class="col-md-4 col-sm-12" [checked]="doesInclude('Heavy Garage Items')"
-          (change)="setSpeciality($event, 'Heavy Garage Items')">
-          Heavy Garage Items</mat-checkbox>
-      </div>
-
-      <br>
-
-      <h4 style="text-align: left; width: 100%;">
-        Location and access
-      </h4>
-
-      <h5>Pick up address</h5>
-
+    </div>
+    <div class="col-md-6 col-sm-12 get-quotes-div">
+      <h3 style="margin-top: 20px; font-weight: normal;">
+        Get Your Quote
+      </h3>
       <div class="row">
-        <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
-          <mat-label>Vehicle access</mat-label>
-          <mat-select [(ngModel)]="order.where.vehicleAccess" (selectionChange)="saveChanges()" required>
-            <mat-option value="Good and/or flat access and truck can fit in the driveway">Good and/or flat access and
-              truck can fit in the driveway</mat-option>
-            <mat-option value="Access good but on-street parking is only available.">Access good but on-street parking
-              is only available.</mat-option>
-            <mat-option value="Long driveway, but wide enough for a truck">Long driveway, but wide enough for a truck
-            </mat-option>
-            <mat-option value="Overhanging spouting, trees or low hanging wires over driveway">Overhanging spouting,
-              trees or low hanging wires over driveway</mat-option>
-            <mat-option value="Steep and /or narrow driveway">Steep and /or narrow driveway</mat-option>
-          </mat-select>
+        <mat-form-field class="col-sm-12" appearance="fill">
+          <mat-label>Full Name</mat-label>
+          <input matInput type="text" (change)="saveChanges()" [(ngModel)]="order.name" required>
         </mat-form-field>
 
-        <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
-          <mat-label>Access into home</mat-label>
-          <mat-select [(ngModel)]="order.where.accessToHome" (selectionChange)="saveChanges()" required>
-            <mat-option value="Single level, no stairs, good access">Single level, no stairs, good access</mat-option>
-            <mat-option value="Has internal or external stairs">Has internal or external stairs</mat-option>
-            <mat-option value="Narrow entry point(s)">Narrow entry point(s)</mat-option>
-            <mat-option value="Spiral or narrow staircase">Spiral or narrow staircase</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-
-      <h5>Delivery address</h5>
-
-      <div class="row">
-        <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
-          <mat-label>Vehicle access</mat-label>
-          <mat-select [(ngModel)]="order.to.vehicleAccess" (selectionChange)="saveChanges()" required>
-            <mat-option value="Good and/or flat access and truck can fit in the driveway">Good and/or flat access and
-              truck can fit in the driveway</mat-option>
-            <mat-option value="Access good but on-street parking is only available.">Access good but on-street parking
-              is only available.</mat-option>
-            <mat-option value="Long driveway, but wide enough for a truck">Long driveway, but wide enough for a truck
-            </mat-option>
-            <mat-option value="Overhanging spouting, trees or low hanging wires over driveway">Overhanging spouting,
-              trees or low hanging wires over driveway</mat-option>
-            <mat-option value="Steep and /or narrow driveway">Steep and /or narrow driveway</mat-option>
-          </mat-select>
+        <mat-form-field class="col-6" appearance="fill">
+          <mat-label>Enter your Email</mat-label>
+          <input matInput type="email" (change)="saveChanges()" [(ngModel)]="order.email" placeholder="pat@example.com" required>
         </mat-form-field>
 
-        <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
-          <mat-label>Access into home</mat-label>
-          <mat-select [(ngModel)]="order.to.accessToHome" (selectionChange)="saveChanges()" required>
-            <mat-option value="Single level, no stairs, good access">Single level, no stairs, good access</mat-option>
-            <mat-option value="Has internal or external stairs">Has internal or external stairs</mat-option>
-            <mat-option value="Narrow entry point(s)">Narrow entry point(s)</mat-option>
-            <mat-option value="Spiral or narrow staircase">Spiral or narrow staircase</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-
-      <br>
-
-      <mat-form-field style="width: 100%" appearance="fill">
-        <mat-label>Addtional information or questions you have for our team</mat-label>
-        <textarea (change)="saveChanges()" [(ngModel)]="order.deliveryInfo"
-          placeholder="Please use this space to describe any, special pieces of furniture, unusual items, statues, artwork etc that you'd like to make us aware of. This should include specific heavy items above 50kg's"
-          matInput></textarea>
-      </mat-form-field>
-      <br>
-      <div>
-        <button style="margin-right: 10px;" color="accent" mat-raised-button (click)="secondBack(stepper)">Back</button>
-        <button style="margin-left: 10px;" color="primary" mat-raised-button (click)="secondNext(stepper)">Next</button>
-      </div>
-    </mat-step>
-    <mat-step [stepControl]="thirdFormGroup" [editable]="true">
-      <h5 style="margin-top: 20px;">
-        We just need a little more information to make sure things run smoothly so that we can provide an accurate
-        quote
-        as quickly as possible.
-      </h5>
-      <br>
-      <ng-template matStepLabel>Conformation</ng-template>
-      <h4 style="text-align: left; width: 100%;">
-        Billing Details
-      </h4>
-
-      <div class="row">
-        <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
-          <mat-label>Enter your email</mat-label>
-          <input matInput (change)="saveChanges()" [(ngModel)]="order.email" placeholder="pat@example.com" required>
-        </mat-form-field>
-
-        <mat-form-field class="col-md-6 col-sm-12" appearance="fill">
-          <mat-label>Phone number</mat-label>
-          <input matInput (keypress)="onlyNum($event)" (change)="saveChanges()" [(ngModel)]="order.phone" maxlength="10"
+        <mat-form-field class="col-6" appearance="fill">
+          <mat-label>Phone Number</mat-label>
+          <input matInput type="tel" (keypress)="onlyNum($event)" (change)="saveChanges()" [(ngModel)]="order.phone" maxlength="10"
             required>
-          <!-- <mat-icon matSuffix>phone</mat-icon> -->
-          <i matSuffix class="phoneIcon bi bi-telephone-fill"></i>
-          <mat-hint>Include area code</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="col-6" appearance="fill">
+          <mat-label>Size of Move</mat-label>
+          <mat-select [(ngModel)]="order.size" (selectionChange)="saveChanges()" required>
+            <ng-container *ngFor="let size of sizes">
+              <mat-option [value]="size">{{size}}</mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col-6" appearance="fill">
+          <mat-label>Date</mat-label>
+          <input (change)="saveChanges()" (click)="picker.open()" [(ngModel)]="order.date" readonly matInput
+            [matDatepicker]="picker" [min]="minDate" required>
+          <mat-datepicker-toggle style="color: white;" matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <google-address class="col-sm-12" [line1]="order.where?.special" (fullAddress)="setWhereAddress($event)"
+          [label]="'Pickup Address'">
+        </google-address>
+
+        <google-address class="col-sm-12" [line1]="order.to?.special" (fullAddress)="setToAddress($event)"
+          [label]="'Delivery Address'">
+        </google-address>
+
+        <mat-form-field class="col-sm-12" appearance="fill">
+          <mat-label>Additional Notes</mat-label>
+          <textarea (change)="saveChanges()" [(ngModel)]="order.additionalInfo" matInput></textarea>
         </mat-form-field>
       </div>
-      <br>
-      <mat-form-field style="width: 100%" appearance="fill">
-        <mat-label>Additional Notes</mat-label>
-        <textarea (change)="saveChanges()" [(ngModel)]="order.additionalInfo"
-          placeholder="Please add any additional information that will help us do a great job for you or that we should know about. If any single item is above 50kg it should be noted here."
-          matInput></textarea>
-      </mat-form-field>
-      <br>
-      <div>
-        <br>
-        <button style="margin-right: 10px;" color="accent" mat-raised-button (click)="thirdBack(stepper)">Back</button>
-        <button style="margin-left: 10px;" color="primary" mat-raised-button
-          (click)="thirdNext(stepper)">Submit</button>
-      </div>
-    </mat-step>
-  </mat-vertical-stepper>
-
+      <button class="submit-button" mat-raised-button (click)="submit()" color="primary">Submit</button>
+    </div>
+  </div>
 </div>
+
 <footer>
   <div class="footer-area">
     <div class="container">
@@ -380,7 +111,7 @@
                 <ul>
                   <li>
                     <a href="https://www.facebook.com/Comfort-Movers-105774034843709/" target="_blank"><i
-                      class="bi bi-facebook"></i></a>
+                        class="bi bi-facebook"></i></a>
                   </li>
                   <li>
                     <a href="#"><i class="bi bi-twitter"></i></a>
@@ -429,6 +160,43 @@
             <p>
               &copy; Copyright <strong>Comfort Movers</strong>. All Rights Reserved
             </p>
+          </div>
+          <div class="keywords">
+            packing services cost, moving packing services near me, house packing services near me, house packing
+            services, house packers, professional house packers, moving house packers, house packers near me, house
+            packers
+            auckland, home movers nz, home movers pack, home movers and packers, home movers near me, cheap home
+            movers, home movers auckland, house removal firms, house removal quote online, house removal truck, house
+            removal quotes, house removal costs, house removal and relocation, house removal service, house removal
+            costs
+            nz, cost of house removal nz, house removal companies near me, professional house removal company, house
+            removal companies, house removal companies auckland, house removal company in auckland, house removal
+            companies nz, packing and moving companies near me, best packing and moving companies, packing and moving
+            companies, packing and moving companies auckland, rent a moving truck for a day, moving truck rental
+            cost, moving truck cost, moving truck rental prices one way, moving truck rental prices, average cost of
+            moving truck, moving truck prices, moving truck auckland, moving truck hire south auckland, auckland
+            moving
+            truck hire, moving truck hire west auckland, moving truck hire auckland, cheap moving truck hire
+            auckland, moving truck hire nz, moving truck hire near me, moving truck hire north shore, cost of hiring a
+            moving truck, moving truck hire prices, moving truck hire, house movers east auckland, house movers
+            auckland
+            nz, house movers west auckland, cheap house movers auckland, house movers south auckland, house movers
+            auckland, house movers near me, house movers and packers, packers and movers charges, intercity packers
+            and
+            movers, house packers and movers near me, household packers and movers, allied packers and
+            movers, professional packers and movers, packers and movers cost, best packers and movers, packers and
+            movers, prices packers and movers, cheap house movers, cheap house movers near me, full house movers,
+            house
+            movers north shore, highway house movers nz, house movers nz, cheap house moving companies, best house
+            moving
+            companies, house moving companies near me, house moving companies, house moving services near me, house
+            moving
+            service, house moving service near me, house moving and storage, house moving companies nz, house moving
+            companies auckland, packers and movers near me, packers and movers cost estimate, prices packers and
+            movers
+            nz, packers and movers in auckland, packers and movers auckland, prices packers and movers co nz, packing
+            and
+            moving services
           </div>
         </div>
       </div>

@@ -13,8 +13,17 @@ export class GooglePlacesDirective {
     this.element = elRef.nativeElement;
   }
 
-  getFormattedAddress(place) {
-    let location_obj = {};
+  getFormattedAddress(place: any) {
+    let location_obj = {
+      formatted_address: "",
+      locality: "",
+      street_number: "",
+      admin_area_l1: "",
+      route: "",
+      country: "",
+      sublocality: "",
+      postal_code: ""
+    };
     for (let i in place.address_components) {
       let item = place.address_components[i];
 

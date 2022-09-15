@@ -13,7 +13,7 @@ export class ProcessingIndicatorComponent implements OnInit {
   @Input()
   view = 'bars';
 
-  type: string;
+  type?: string;
 
   constructor() { }
 

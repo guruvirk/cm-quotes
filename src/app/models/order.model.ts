@@ -1,10 +1,11 @@
 export class Order {
-    code: string
-    email: string
-    phone: number
-    date: Date
-    timeslot: string
-    where: {
+    code?: string
+    name?: string
+    email?: string
+    phone?: number
+    date?: Date
+    timeslot?: string
+    where?: {
         special: string,
         line1: string,
         line2: string,
@@ -20,7 +21,7 @@ export class Order {
         vehicleAccess: string,
         accessToHome: string
     }
-    to: {
+    to?: {
         special: string,
         line1: string,
         line2: string,
@@ -36,21 +37,22 @@ export class Order {
         vehicleAccess: string,
         accessToHome: string
     }
-    size: string
-    sizeDetails: string
-    isMoveOnly: boolean
-    isCleaning: boolean
-    special: string[]
-    deliveryInfo: string
-    additionalInfo: string
-    status: string
-    lastUpdate: Date
+    size?: string
+    sizeDetails?: string
+    isMoveOnly?: boolean
+    isCleaning?: boolean
+    special?: string[]
+    deliveryInfo?: string
+    additionalInfo?: string
+    status?: string
+    lastUpdate?: Date
 
     constructor(obj?: any) {
         if (!obj) {
             return;
         }
         this.code = obj.code
+        this.name = obj.name
         this.date = obj.date
         this.status = obj.status
         this.lastUpdate = obj.lastUpdate
@@ -64,38 +66,6 @@ export class Order {
         this.deliveryInfo = obj.deliveryInfo
         this.additionalInfo = obj.additionalInfo
         this.special = []
-        this.where = {
-            special: null,
-            line1: null,
-            line2: null,
-            district: null,
-            suburb: null,
-            city: null,
-            state: null,
-            pinCode: null,
-            country: null,
-            floor: null,
-            isParkingAway: null,
-            isElevator: null,
-            vehicleAccess: null,
-            accessToHome: null
-        }
-        this.to = {
-            special: null,
-            line1: null,
-            line2: null,
-            district: null,
-            suburb: null,
-            city: null,
-            state: null,
-            pinCode: null,
-            country: null,
-            floor: null,
-            isParkingAway: null,
-            isElevator: null,
-            vehicleAccess: null,
-            accessToHome: null
-        }
 
         if (obj.special && obj.special.length) {
             for (const item of obj.special) {
