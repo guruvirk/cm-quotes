@@ -65,11 +65,11 @@ export class AppComponent {
       return
     }
     if (!this.order.where || !this.order.where.special) {
-      this.uxService.handleError("Please select Delivery Address")
+      this.uxService.handleError("Please select Pickup Address")
       return
     }
     if (!this.order.to || !this.order.to.special) {
-      this.uxService.handleError("Please select Pick Up Address")
+      this.uxService.handleError("Please select Delivery Address")
       return
     }
 
