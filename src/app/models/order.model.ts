@@ -2,6 +2,7 @@ export class Order {
     code?: string
     name?: string
     email?: string
+    gclid?: string
     phone?: number
     date?: Date
     timeslot?: string

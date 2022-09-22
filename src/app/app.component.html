@@ -3,7 +3,7 @@
   <div style="height: 100%;" class="container d-flex justify-content-between">
 
     <div class="logo">
-      <img class="logoImage" src="assets/img/logo.png">
+      <img class="logoImage" src="assets/img/logo.webp">
     </div>
 
     <nav id="navbar" class="navbar">
@@ -22,7 +22,7 @@
   </div>
 </header>
 
-<div class="mainContainer" style="background-image: url(assets/img/picture.png);">
+<div class="mainContainer" style="background-image: url(assets/img/picture.webp);">
   <div class="row rowContainer">
     <div class="col-md-6 col-sm-12">
 
@@ -49,6 +49,8 @@
           <mat-label>Full Name</mat-label>
           <input matInput type="text" (change)="saveChanges()" [(ngModel)]="order.name" required>
         </mat-form-field>
+
+        <input type="hidden" id="gclid_field" name="gclid_field" [(ngModel)]="order.gclid" value="">
 
         <mat-form-field class="col-6" appearance="fill">
           <mat-label>Enter your Email</mat-label>
@@ -104,7 +106,7 @@
           <div class="footer-content">
             <div class="footer-head">
               <div class="footer-logo">
-                <img class="logoImage" src="assets/img/logo.png">
+                <img class="logoImage" src="assets/img/logo.webp">
               </div>
               <p>We make moving simple as we are house moving pros 😎</p>
               <div class="footer-icons">
