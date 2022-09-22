@@ -283,7 +283,7 @@ div#preloader {
 }
 
 .header-bg {
-  background: url(../img/background/page-header.jpg);
+  /* background: url(../img/background/page-header.jpg); */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top center;
@@ -753,7 +753,7 @@ div#preloader {
 }
 
 .team-member::before {
-  background: rgba(0, 0, 0, 0) url("../img/team/team01.jpg") repeat scroll 0 0;
+  /* background: rgba(0, 0, 0, 0) url("../img/team/team01.jpg") repeat scroll 0 0; */
   content: "";
   display: block;
   height: 100%;
@@ -946,7 +946,7 @@ div#preloader {
 # Review
 --------------------------------------------------------------*/
 .reviews-area {
-  background: url(../img/background/reviews-bg.jpg);
+  /* background: url(../img/background/reviews-bg.jpg); */
   overflow: hidden;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1285,7 +1285,7 @@ div#preloader {
 --------------------------------------------------------------*/
 .testimonials {
   padding: 80px 0;
-  background: url("../img/background/slider-bg.jpg") no-repeat;
+  /* background: url("../img/background/slider-bg.jpg") no-repeat; */
   background-position: center center;
   background-size: cover;
   position: relative;
