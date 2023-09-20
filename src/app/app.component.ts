@@ -74,20 +74,20 @@ export class AppComponent {
     }
 
     this.isProgress = true
-    this.http.post<any>(`${environment.url}`, this.order, { headers: { "x-tenant": "cm" } }).subscribe((responce) => {
-      if (responce.isSuccess) {
+    this.http.post<any>(`${environment.url}`, this.order, { headers: { "x-tenant": "cm" } }).subscribe((response) => {
+      if (response.isSuccess) {
         const gtmTag = {
           event: 'submitted_successfully',
-          data: responce.data
+          data: response.data
         };
         this.gtmService.pushTag(gtmTag);
         this.uxService.showInfo("Submitted SuccessFully")
         window.localStorage.clear()
         this.order = new Order({})
-        window.location.href = `https://comfortmovers.co.nz/success?id=${responce.data.code}`
+        window.location.href = `https://comfortmovers.co.nz/success?id=${response.data.code}`
       } else {
         this.isProgress = false
-        this.uxService.showInfo("Unable to Submit " + responce.error)
+        this.uxService.showInfo("Unable to Submit " + response.error)
       }
     }, err => {
       this.isProgress = false
